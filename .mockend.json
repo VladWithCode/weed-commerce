@@ -1,0 +1,26 @@
+{
+  "Product": {
+    "title": {
+      "string": [
+        "Cartucho",
+        "Oz",
+        "1/2 Oz",
+        "Vaporizador",
+        "Brick",
+        "Bong",
+        "Pipa",
+        "Hitter",
+        "Papel de Liar"
+      ]
+    },
+    "slug": { "string": {} },
+    "mainImg": {
+      "regexp": "https://picsum\\.photos/seed/[0-9]{5}/1920/1080"
+    },
+    "description": {},
+    "price": { "int": { "min": 100, "max": 9000 } },
+    "inStock": { "boolean": {} },
+    "tag": { "loremWord": {} },
+    "category": { "string": ["Accesorio", "Cepa", "Vaporizador", "Papel"] }
+  }
+}

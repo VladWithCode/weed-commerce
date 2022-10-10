@@ -1,0 +1,19 @@
+/* ./styles/global.css */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import 'vars';
+
+@import 'typography';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--ff-primary);
+}
+
+body {
+  @apply text-black bg-gray-50;
+}
