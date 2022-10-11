@@ -19,13 +19,13 @@ function Menu({ isActive, setIsActive }) {
       </div>
       <Navigation />
       <Usefull />
-      <span
+      <button
         className='absolute top-5 right-3 2xl:right-12'
         onClick={e => setIsActive(false)}>
         <svg className='w-8 h-8 fill-current'>
           <use href='/svg/sprites.svg#times'></use>
         </svg>
-      </span>
+      </button>
     </nav>
   );
 }

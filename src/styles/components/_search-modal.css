@@ -1,0 +1,9 @@
+.search-modal {
+  position: absolute;
+  top: -100%;
+  transition: top 0.35s linear;
+
+  &.active {
+    top: 0;
+  }
+}
