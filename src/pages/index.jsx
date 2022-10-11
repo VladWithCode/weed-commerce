@@ -10,7 +10,7 @@ export default function Home() {
       </div>
       <div className='img-container h-10 w-10 m-auto basis-1/3 flex justify-center'>
         <Image
-          src='/img/sk_leaf.png'
+          src='/img/SK_LEAF.png'
           height={42}
           width={42}
           alt='SK LEAF LOGO'
