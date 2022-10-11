@@ -1,0 +1,8 @@
+.menu {
+  left: -100%;
+  transition: left 0.2s ease-out;
+
+  &.active {
+    left: 0;
+  }
+}

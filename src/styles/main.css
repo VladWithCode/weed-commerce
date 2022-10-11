@@ -7,6 +7,8 @@
 
 @import 'typography';
 
+@import 'components/_menu.css';
+
 html,
 body {
   padding: 0;
