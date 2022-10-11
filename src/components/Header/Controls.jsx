@@ -1,14 +1,23 @@
+import Link from 'next/link';
 import React from 'react';
 
-function Controls() {
+function Controls({ setIsSearchActive }) {
   return (
     <div className='controls flex gap-x-2 basis-1/3 justify-end'>
-      <svg className='h-8 w-8 fill-current'>
-        <use href='/svg/sprites.svg#search'></use>
-      </svg>
-      <svg className='h-8 w-8 fill-current'>
-        <use href='/svg/sprites.svg#cart'></use>
-      </svg>
+      <button
+        className='h-8 w-8'
+        onClick={e => setIsSearchActive(isActive => !isActive)}>
+        <svg className='h-8 w-8 fill-current'>
+          <use href='/svg/sprites.svg#search'></use>
+        </svg>
+      </button>
+      <Link href='/carrito'>
+        <a className='h-8 w-8'>
+          <svg className='h-8 w-8 fill-current'>
+            <use href='/svg/sprites.svg#cart'></use>
+          </svg>
+        </a>
+      </Link>
     </div>
   );
 }

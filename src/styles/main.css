@@ -8,6 +8,7 @@
 @import 'typography';
 
 @import 'components/_menu.css';
+@import 'components/_search-modal';
 
 html,
 body {
