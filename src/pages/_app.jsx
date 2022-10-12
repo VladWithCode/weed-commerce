@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Header from '../components/Header/Header';
+import FloatingBtn from '../components/Whatsapp/FloatingBtn';
 import '../styles/main.css';
 
 const queryClient = new QueryClient();
@@ -10,6 +11,8 @@ function MyApp({ Component, pageProps }) {
       <Header />
 
       <Component {...pageProps} />
+
+      <FloatingBtn />
     </QueryClientProvider>
   );
 }
