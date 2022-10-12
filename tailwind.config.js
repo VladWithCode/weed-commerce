@@ -13,6 +13,8 @@ module.exports = {
         accents: '#E2AAF4',
         aux_1: '#FF5D8F',
         aux_2: '#E67AB8',
+        light: '#F0F0F0',
+        dark: '#07090E',
       },
     },
   },
