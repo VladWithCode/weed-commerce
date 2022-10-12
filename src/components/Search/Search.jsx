@@ -2,15 +2,17 @@ import React from 'react';
 
 function Search({}) {
   return (
-    <form className='w-full h-full flex'>
+    <form className='border-2 border-primary w-full h-full flex rounded-lg'>
       <input
-        className='outline-none h-full grow px-2 bg-secondary bg-opacity-25 focus:bg-opacity-90'
+        className='outline-none h-full grow px-4 bg-primary bg-opacity-30 focus:bg-opacity-70'
         type='text'
         name='search'
         id='search_input'
       />
-      <button type='submit' className='w-11 h-11 flex bg-primary shrink-0 z-10'>
-        <svg className='m-auto w-10 h-10 fill-secondary'>
+      <button
+        type='submit'
+        className='w-11 h-full flex bg-primary shrink-0 z-10'>
+        <svg className='m-auto w-10 h-10 fill-white'>
           <use href='/svg/sprites.svg#search'></use>
         </svg>
       </button>
