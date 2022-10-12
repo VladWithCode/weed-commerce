@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -11,16 +12,17 @@ function Slide({ strain, slideId, currentSlide }) {
 
   return (
     <div
-      className={'hero-slide absolute top-0 left-0 grid grid-cols-2 grid-rows-hero'.concat(
+      className={'hero-slide absolute top-0 left-0 grid grid-cols-2 grid-rows-hero bg-primary'.concat(
         isActive ? ' active' : ''
       )}>
-      <img
+      <Image
         src='/img/weed.jpeg'
         alt='weed'
-        className='row-span-full col-span-full z-10'
+        layout='fill'
+        className='row-span-full col-span-full z-10 object-cover object-center'
       />
       <span className='row-span-full col-span-full z-20 bg-gray-800 bg-opacity-40'></span>
-      <h1 className='row-start-2 col-start-1 col-span-2 justify-self-start px-12 z-30 text-white text-4xl font-bold'>
+      <h1 className='row-start-2 col-start-1 justify-self-end px-12 z-30 text-white text-4xl font-bold'>
         {strain.name}
       </h1>
       <Link href={'/tienda/strains/'.concat(strain.slug)}>
