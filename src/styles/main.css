@@ -7,7 +7,9 @@
 
 @import 'typography';
 
+@import 'components/_button.css';
 @import 'components/_floating-btn.css';
+@import 'components/_hero.css';
 @import 'components/_menu.css';
 @import 'components/_search-modal';
 
