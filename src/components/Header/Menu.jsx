@@ -9,7 +9,7 @@ function Menu({ isActive, setIsActive }) {
       className={'menu fixed top-0 w-full h-full z-30 overflow-hidden'.concat(
         isActive ? ' active' : ''
       )}>
-      <div className='relative flex flex-col w-80 h-full max-w-full 2xl:max-w-none 2xl:w-1/3 z-20 2xl:px-12 bg-secondary'>
+      <div className='relative flex flex-col w-80 h-full max-w-full 2xl:max-w-none 2xl:w-1/3 z-20 2xl:px-12 bg-black text-secondary'>
         <div className='w-16 h-16 grow-0 ml-4 mt-2'>
           <Image
             src='/img/logo_handless_light.png'
@@ -29,7 +29,7 @@ function Menu({ isActive, setIsActive }) {
         </button>
       </div>
       <div
-        className='absolute z-10 top-0 left-0 w-full h-full bg-black bg-opacity-30'
+        className='absolute z-10 top-0 left-0 w-full h-full'
         onClick={e => setIsActive(false)}></div>
     </nav>
   );
