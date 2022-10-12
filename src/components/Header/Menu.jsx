@@ -6,26 +6,31 @@ import Usefull from './Usefull';
 function Menu({ isActive, setIsActive }) {
   return (
     <nav
-      className={'menu flex flex-col absolute top-0 h-screen w-80 max-w-full z-30 bg-secondary shadow-sm shadow-primary 2xl:max-w-none 2xl:w-2/6 2xl:px-12'.concat(
+      className={'menu absolute top-0 w-80 h-screen z-30 2xl:max-w-none 2xl:w-1/3'.concat(
         isActive ? ' active' : ''
       )}>
-      <div className='w-16 h-16 grow-0 ml-4 mt-2'>
-        <Image
-          src='/img/logo_handless_light.png'
-          height={64}
-          width={64}
-          alt='SK LEAF LOGO'
-        />
+      <div className='relative flex flex-col h-full max-w-full z-20 2xl:px-12 bg-secondary'>
+        <div className='w-16 h-16 grow-0 ml-4 mt-2'>
+          <Image
+            src='/img/logo_handless_light.png'
+            height={64}
+            width={64}
+            alt='SK LEAF LOGO'
+          />
+        </div>
+        <Navigation />
+        <Usefull />
+        <button
+          className='absolute top-5 right-3 2xl:right-12'
+          onClick={e => setIsActive(false)}>
+          <svg className='w-8 h-8 fill-current'>
+            <use href='/svg/sprites.svg#times'></use>
+          </svg>
+        </button>
       </div>
-      <Navigation />
-      <Usefull />
-      <button
-        className='absolute top-5 right-3 2xl:right-12'
-        onClick={e => setIsActive(false)}>
-        <svg className='w-8 h-8 fill-current'>
-          <use href='/svg/sprites.svg#times'></use>
-        </svg>
-      </button>
+      <div
+        className='absolute z-10 top-0 left-0 w-screen h-full bg-black bg-opacity-30'
+        onClick={e => setIsActive(false)}></div>
     </nav>
   );
 }
