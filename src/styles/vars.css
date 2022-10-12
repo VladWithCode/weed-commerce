@@ -1,4 +1,12 @@
 :root {
   --ff-primary: 'Merriweather', serif;
   --ff-secondary: 'Open Sans', sans-serif;
+
+  --color-primary: '#65317A';
+  --color-secondary: '#C25794';
+  --color-accents: '#E2AAF4';
+  --color-aux_1: '#FF5D8F';
+  --color-aux_2: '#E67AB8';
+  --color-light: '#F0F0F0';
+  --color-dark: '#07090E';
 }
