@@ -1,6 +1,5 @@
 .btn {
-  @apply rounded-sm;
-  @apply text-sm;
+  @apply rounded;
   @apply bg-aux_2;
   @apply p-2;
 

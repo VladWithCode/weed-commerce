@@ -16,6 +16,9 @@ module.exports = {
         light: '#F0F0F0',
         dark: '#07090E',
       },
+      gridTemplateRows: {
+        hero: 'minmax(5rem, 1fr) repeat(2, minmax(max-content, 30vh))',
+      },
     },
   },
   plugins: [],
