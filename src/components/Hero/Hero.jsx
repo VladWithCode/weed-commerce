@@ -6,7 +6,6 @@ function Hero({ strains }) {
   const [slide, setSlide] = useState(strains[0].id);
 
   useInterval(() => {
-    console.count('change');
     let l = strains.length;
     if (slide + 1 >= l) setSlide(0);
     else setSlide(prev => prev + 1);
