@@ -4,7 +4,7 @@ import Search from '../Search/Search';
 function SearchModal({ isActive, setIsActive }) {
   return (
     <div
-      className={'search-modal flex flex-col items-center left-0 right-0 h-40 bg-white px-4 z-30 border-b-4 border-secondary'.concat(
+      className={'search-modal flex flex-col items-center left-0 right-0 h-40 bg-white px-4 z-30 border-b-4 border-secondary font-secondary font-bold'.concat(
         isActive ? ' active' : ''
       )}>
       <div className='flex justify-between items-center w-full max-w-4xl z-10'>
@@ -19,7 +19,7 @@ function SearchModal({ isActive, setIsActive }) {
           </svg>
         </button>
       </div>
-      <div className='m-auto mt-0 flex h-11 w-full justify-center items-center text-primary border-current border-2 rounded max-w-4xl overflow-hidden z-10'>
+      <div className='m-auto mt-0 flex h-11 w-full justify-center items-center rounded max-w-4xl overflow-hidden z-10'>
         <Search />
       </div>
     </div>

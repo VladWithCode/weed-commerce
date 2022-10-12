@@ -2,12 +2,13 @@ import React from 'react';
 
 function Search({}) {
   return (
-    <form className='border-2 border-primary w-full h-full flex rounded-lg'>
+    <form className='border-2 border-primary w-full h-full flex rounded-lg text-primary'>
       <input
-        className='outline-none h-full grow px-4 bg-primary bg-opacity-30 focus:bg-opacity-70'
+        className='outline-none h-full grow px-4 bg-primary bg-opacity-30 focus:bg-opacity-50 placeholder-aux_2'
         type='text'
         name='search'
         id='search_input'
+        placeholder='Busca algo como "Blue Haze"'
       />
       <button
         type='submit'
