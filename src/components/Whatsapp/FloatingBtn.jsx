@@ -2,7 +2,7 @@ import React from 'react';
 
 function FloatingBtn({}) {
   return (
-    <button className='font-secondary font-semibold floating-btn flex absolute bottom-4 right-4 p-2 shadow-primary shadow-sm rounded-full bg-white z-30'>
+    <button className='font-secondary font-semibold floating-btn flex fixed bottom-4 right-4 p-2 shadow-primary shadow-sm rounded-full bg-white z-30'>
       <span className='floating-btn-tooltip'>
         Contactanos en Whatsapp!
         <div className='arrow'></div>
