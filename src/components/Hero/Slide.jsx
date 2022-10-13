@@ -17,7 +17,7 @@ function Slide({ strain, slideId, currentSlide }) {
         className='row-span-full col-span-full z-10 object-cover object-center'
       />
       <span className='row-span-full col-span-full z-20 bg-gray-800 bg-opacity-40'></span>
-      <h1 className='row-start-2 col-start-1 justify-self-end px-12 z-30 text-white text-4xl font-bold'>
+      <h1 className='row-start-2 col-start-1 col-span-2 mx-8 sm:col-span-1 sm:col-start-1 sm:justify-self-end z-30 text-white text-4xl uppercase font-bold'>
         {strain.name}
       </h1>
       <Link href={'/tienda/strains/'.concat(strain.slug)}>
