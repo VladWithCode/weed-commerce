@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
+import { useCart } from '../../hooks/useCart';
 
 function Navigation() {
-  const [count, setCount] = useState(0);
+  const count = useCart(state => state.count);
 
   return (
     <nav className='w-full px-4 text-xl text-white font-secondary font-semibold mt-6 mb-auto'>
