@@ -1,14 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 function Slide({ strain, slideId, currentSlide }) {
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    if (slideId === currentSlide) setIsActive(true);
-    else if (isActive) setIsActive(false);
-  }, [currentSlide]);
+  let isActive = false;
+  if (currentSlide === slideId) isActive = true;
 
   return (
     <div
