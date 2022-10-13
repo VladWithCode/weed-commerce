@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 
 function Controls({ setIsSearchActive }) {
@@ -11,13 +10,6 @@ function Controls({ setIsSearchActive }) {
           <use href='/svg/sprites.svg#search'></use>
         </svg>
       </button>
-      <Link href='/carrito'>
-        <a className='h-8 w-8'>
-          <svg className='h-8 w-8 fill-current'>
-            <use href='/svg/sprites.svg#cart'></use>
-          </svg>
-        </a>
-      </Link>
     </div>
   );
 }
