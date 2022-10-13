@@ -21,7 +21,7 @@
     }
 
     img {
-      @apply object-[position:center_-45rem];
+      @apply xl:object-[position:center_-45rem];
     }
 
     &.active {
