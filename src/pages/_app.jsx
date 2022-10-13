@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Header from '../components/Header/Header';
 import FloatingBtn from '../components/Whatsapp/FloatingBtn';
@@ -7,13 +8,18 @@ const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Header />
+    <>
+      <Head>
+        <title>Get Erizo 😎</title>
+      </Head>
+      <QueryClientProvider client={queryClient}>
+        <Header />
 
-      <Component {...pageProps} />
+        <Component {...pageProps} />
 
-      <FloatingBtn />
-    </QueryClientProvider>
+        <FloatingBtn />
+      </QueryClientProvider>
+    </>
   );
 }
 

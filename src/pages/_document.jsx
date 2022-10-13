@@ -5,7 +5,6 @@ function Document() {
   return (
     <Html>
       <Head>
-        <title>Get Erizo 😎</title>
         <meta
           name='description'
           content='Entra y encuencuentra la weed perfecta para ti. Tenemos variedad para que escojas y disfrutes del mejor viaje que la Maria puede ofrecer.'
