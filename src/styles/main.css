@@ -21,5 +21,6 @@ body {
 }
 
 body {
-  @apply text-black bg-gray-50;
+  @apply text-black;
+  @apply bg-zinc-800;
 }
