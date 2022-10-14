@@ -1,20 +1,30 @@
 import create from 'zustand';
+import { persist } from 'zustand/middleware';
 
-export const useCart = create(set => ({
+const INITIAL_STATE = {
   items: [],
   count: 0,
   subtotal: 0,
-  shipping: 0,
+  shipping: 150,
   total: 0,
-  setShipping: amount =>
-    set(state => ({ shipping: amount, total: state.subtotal + amount })),
-  addItem: item => addItem(set, item),
-  removeItem: id => removeItem(set, id),
-  setItemQty: (id, qty) => setItemQty(set, id, qty),
-}));
+};
+
+export const useCart = create(
+  persist(
+    set => ({
+      ...INITIAL_STATE,
+      setShipping: amount =>
+        set(state => ({ shipping: amount, total: state.subtotal + amount })),
+      addItem: item => addItem(set, item),
+      removeItem: id => removeItem(set, id),
+      setItemQty: (id, qty) => setItemQty(set, id, qty),
+    }),
+    { name: 'cart-storage' }
+  )
+);
 
 const addItem = (set, itemToAdd) => {
-  return set(state => {
+  set(state => {
     let subtotal = 0;
     let wasInCart = false;
     const newItems = state.items.map(stateItem => {
@@ -22,7 +32,7 @@ const addItem = (set, itemToAdd) => {
 
       if (stateItem.id === itemToAdd.id) {
         wasInCart = true;
-        updatedItem.qty = itemToAdd.qty;
+        updatedItem.qty = updatedItem.qty + 1;
       }
 
       subtotal = updatedItem.qty * updatedItem.price;
@@ -30,14 +40,13 @@ const addItem = (set, itemToAdd) => {
     });
 
     if (!wasInCart) {
-      const subtotalToAdd = itemToAdd.price * itemToAdd.qty;
-
       newItems.push({
         ...itemToAdd,
-        subtotal: subtotalToAdd,
+        subtotal: itemToAdd.price,
+        qty: 1,
       });
 
-      subtotal += subtotalToAdd;
+      subtotal += itemToAdd.price;
     }
 
     return {
@@ -50,7 +59,7 @@ const addItem = (set, itemToAdd) => {
 };
 
 const removeItem = (set, id) => {
-  return set(state => {
+  set(state => {
     let subtotal = 0;
     const newItems = state.items.filter(stateItem => {
       if (stateItem.id === id) return false;
