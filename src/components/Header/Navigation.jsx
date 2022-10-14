@@ -1,21 +1,32 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCart } from '../../hooks/useCart';
 
-function Navigation() {
-  const count = useCart(state => state.count);
+function Navigation({ setIsActive }) {
+  const _count = useCart(state => state.count);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setCount(_count);
+  }, []);
+
+  const closeMenuOnClick = () => {
+    setIsActive(false);
+  };
 
   return (
     <nav className='w-full px-4 text-xl text-white font-secondary font-semibold mt-6 mb-auto'>
       <ul className='flex flex-col list-none gap-y-6'>
         <li className='hover:underline underline-offset-4'>
           <Link href='/'>
-            <a>Inicio</a>
+            <a onClick={closeMenuOnClick}>Inicio</a>
           </Link>
         </li>
         <li className='hover:underline underline-offset-4'>
           <Link href='/carrito'>
-            <a className='flex justify-between relative'>
+            <a
+              onClick={closeMenuOnClick}
+              className='flex justify-between relative'>
               <span>Carrito</span>
               <svg className='h-8 w-8 fill-current'>
                 <use href='/svg/sprites.svg#cart'></use>
@@ -30,22 +41,22 @@ function Navigation() {
         </li>
         <li className='hover:underline underline-offset-4'>
           <Link href='/cepas'>
-            <a>Las mejores cepas</a>
+            <a onClick={closeMenuOnClick}>Las mejores cepas</a>
           </Link>
         </li>
         <li className='hover:underline underline-offset-4'>
           <Link href='/'>
-            <a>Tienda</a>
+            <a onClick={closeMenuOnClick}>Tienda</a>
           </Link>
         </li>
         <li className='hover:underline underline-offset-4'>
           <Link href='/accesorios'>
-            <a>Vapes</a>
+            <a onClick={closeMenuOnClick}>Vapes</a>
           </Link>
         </li>
         <li className='hover:underline underline-offset-4'>
           <Link href='/accesorios'>
-            <a>Accesorios</a>
+            <a onClick={closeMenuOnClick}>Accesorios</a>
           </Link>
         </li>
       </ul>

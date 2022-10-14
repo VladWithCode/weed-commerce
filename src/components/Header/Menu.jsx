@@ -18,7 +18,7 @@ function Menu({ isActive, setIsActive }) {
             alt='SK LEAF LOGO'
           />
         </div>
-        <Navigation />
+        <Navigation setIsActive={setIsActive} />
         <Usefull />
         <button
           className='absolute top-5 right-3 2xl:right-12'
