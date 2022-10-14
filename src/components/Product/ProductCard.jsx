@@ -4,7 +4,7 @@ import { priceToString } from '../../utils/numberToString';
 import Card from '../globals/Card';
 
 function ProductCard({ product, className: csName }) {
-  const className = 'grow-0 shadow-md shadow-gray-300';
+  const className = 'grow-0 shadow-gray-900 shadow';
 
   return (
     <Card className={csName?.length > 0 ? className + ' ' + csName : className}>
