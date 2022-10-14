@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
+import { useQuery } from 'react-query';
 import Hero from '../components/Hero/Hero';
 import Gallery from '../components/Product/Gallery';
+import { fetchProducts } from '../services/ProductService';
 
 export async function getServerSideProps(ctx) {
   const testProducts = [
@@ -27,10 +30,12 @@ export async function getServerSideProps(ctx) {
 }
 
 export default function Home({ featuredStrains }) {
+  const { error, isLoading, data } = useQuery(['products'], fetchProducts);
+
   return (
     <>
       <Hero strains={featuredStrains} />
-      <Gallery products={featuredStrains} />
+      {!isLoading && data.products && <Gallery products={data.products} />}
     </>
   );
 }
