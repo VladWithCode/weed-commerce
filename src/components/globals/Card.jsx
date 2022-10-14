@@ -2,7 +2,7 @@ import React from 'react';
 
 function Card({ className: csName, children }) {
   const className =
-    'flex flex-col rounded-sm text-white bg-zinc-900 shrink-0 basis-80 overflow-hidden';
+    'flex flex-col rounded-sm text-white shrink-0 basis-80 overflow-hidden';
 
   return (
     <div className={csName?.length > 0 ? className + ' ' + csName : className}>
