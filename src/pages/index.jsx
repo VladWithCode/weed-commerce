@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { useQuery } from 'react-query';
+import FAQ from '../components/Faq/FAQ';
 import Hero from '../components/Hero/Hero';
 import Gallery from '../components/Product/Gallery';
 import { fetchProducts } from '../services/ProductService';
@@ -36,6 +36,7 @@ export default function Home({ featuredStrains }) {
     <>
       <Hero strains={featuredStrains} />
       {!isLoading && data.products && <Gallery products={data.products} />}
+      <FAQ />
     </>
   );
 }
