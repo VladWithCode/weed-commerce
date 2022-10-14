@@ -1,0 +1,11 @@
+.faq {
+  &-card.active &-content {
+    height: 6rem;
+  }
+
+  &-content {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.2s linear;
+  }
+}
