@@ -11,7 +11,7 @@ function Slide({ strain, slideId, currentSlide }) {
         isActive ? ' active' : ''
       )}>
       <Image
-        src='/img/weed.jpeg'
+        src='/img/placeholder.jpg'
         alt='weed'
         layout='fill'
         className='row-span-full col-span-full z-10 object-cover object-center'

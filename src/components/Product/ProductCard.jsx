@@ -10,7 +10,7 @@ function ProductCard({ product, className: csName }) {
 
   return (
     <Card className={csName?.length > 0 ? className + ' ' + csName : className}>
-      <Image src='/img/weed.jpeg' width={200} height={400} />
+      <Image src='/img/placeholder.jpg' width={200} height={400} />
       <div className='flex justify-between items-center basis-11/12 p-2'>
         <h1 className='text-xl font-semibold uppercase'>{product.name}</h1>
         <p className='text-2xl font-light'>
