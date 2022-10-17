@@ -20,7 +20,7 @@ const questions = [
 ];
 
 function FAQ({}) {
-  const [activeId, setActiveId] = useState(1);
+  const [activeId, setActiveId] = useState(-1);
 
   return (
     <div className='faq max-w-full overflow-hidden text-white p-4'>
