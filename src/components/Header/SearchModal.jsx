@@ -4,7 +4,7 @@ import Search from '../Search/Search';
 function SearchModal({ isActive, setIsActive }) {
   return (
     <div
-      className={'search-modal flex flex-col items-center left-0 right-0 h-40 bg-white px-4 z-30 border-b-4 border-secondary font-secondary font-bold'.concat(
+      className={'search-modal flex flex-col items-center left-0 right-0 bg-white p-4 z-30 border-b-4 border-secondary font-secondary font-bold'.concat(
         isActive ? ' active' : ''
       )}>
       <div className='flex justify-between items-center w-full max-w-4xl z-10'>
