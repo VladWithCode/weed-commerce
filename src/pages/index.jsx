@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import FAQ from '../components/Faq/FAQ';
 import Hero from '../components/Hero/Hero';
 import Gallery from '../components/Product/Gallery';
-import { fetchProducts } from '../services/ProductService';
+import { fetchProducts } from '../utils/fetchers/products';
 
 export async function getServerSideProps(ctx) {
   const testProducts = [
