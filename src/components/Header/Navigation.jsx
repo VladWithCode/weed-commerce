@@ -8,7 +8,7 @@ function Navigation({ setIsActive }) {
 
   useEffect(() => {
     setCount(_count);
-  }, []);
+  }, [_count]);
 
   const closeMenuOnClick = () => {
     setIsActive(false);
