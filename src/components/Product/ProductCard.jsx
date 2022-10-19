@@ -10,10 +10,12 @@ function ProductCard({ product, className: csName }) {
 
   return (
     <Card className={csName?.length > 0 ? className + ' ' + csName : className}>
-      <Image src='/img/placeholder.jpg' width={200} height={400} />
+      <Image src={product.assetPath + product.thumb} width={200} height={400} />
       <div className='flex justify-between items-center basis-11/12 p-2'>
-        <h1 className='text-xl font-semibold uppercase'>{product.name}</h1>
-        <p className='text-2xl font-light'>
+        <h1 className='text-xl font-semibold uppercase overflow-hidden overflow-ellipsis'>
+          {product.name}
+        </h1>
+        <p className='text-xl font-light'>
           $ {priceToString(product.price)}MXN
         </p>
       </div>
