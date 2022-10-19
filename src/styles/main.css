@@ -7,12 +7,14 @@
 
 @import 'typography';
 
-@import 'components/button.css';
-@import 'components/faq.css';
-@import 'components/floating-btn.css';
-@import 'components/hero.css';
-@import 'components/menu.css';
+@import 'components/button';
+@import 'components/faq';
+@import 'components/floating-btn';
+@import 'components/hero';
+@import 'components/menu';
 @import 'components/search-modal';
+
+@import 'utils/scrollbar';
 
 html,
 body {

@@ -1,0 +1,28 @@
+.--scroll {
+  &-x {
+    &::-webkit-scrollbar {
+      width: auto;
+      height: 0.75rem;
+    }
+  }
+
+  &-y {
+    &::-webkit-scrollbar {
+      height: auto;
+      width: 0.75rem;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    @apply bg-gray-400;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-aux_2;
+    @apply rounded-full;
+
+    &:hover {
+      @apply bg-aux_1;
+    }
+  }
+}
