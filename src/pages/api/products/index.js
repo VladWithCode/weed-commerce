@@ -3,6 +3,7 @@ import {
   writeProductFiles,
 } from '../../../services/ProductService';
 import asyncHandler from '../../../utils/asyncHandler';
+import connectMongo from '../../../utils/db';
 import parseFormData from '../../../utils/parseFormData';
 
 const handlers = {
@@ -38,7 +39,14 @@ const handlers = {
   POST: async (req, res) => {
     const { data, files } = await parseFormData(req);
 
-    const product = await createProduct(data);
+    const [createError, product] = await asyncHandler(createProduct(data));
+
+    if (createError) {
+      return res.status(400).json({
+        message: 'Error while saving the product',
+        error: process.env.DEBUG ? createError : undefined,
+      });
+    }
 
     const [writeError] = await asyncHandler(
       writeProductFiles(files, product.assetPath)
@@ -70,6 +78,14 @@ export default async function index(req, res) {
   if (!handler || typeof handler !== 'function')
     return res.status(404).json({
       message: `Cannot ${method} ${req.path}`,
+    });
+
+  const connectError = await connectMongo();
+
+  if (connectError)
+    return res.status(500).json({
+      message: 'Error while connecting to db',
+      error: process.env.DEBUG ? connectError : undefined,
     });
 
   return await handler(req, res);

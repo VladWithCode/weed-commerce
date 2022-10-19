@@ -25,7 +25,7 @@ export const createProduct = async data => {
 
   product.assetPath = '/products/' + product.slug + '/';
 
-  return product;
+  return await product.save();
 };
 
 export async function writeProductFiles(files, path) {
