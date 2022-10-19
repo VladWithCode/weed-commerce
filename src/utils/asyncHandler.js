@@ -7,6 +7,8 @@ const asyncHandler = async p => {
   try {
     return [null, await p];
   } catch (err) {
+    // Ignore EXDEV errors
+    if (process.env.DEBUG && !err.code === 'EXDEV') console.error(err);
     return [err, null];
   }
 };
