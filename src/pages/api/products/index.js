@@ -1,5 +1,6 @@
 import {
   createProduct,
+  getProducts,
   writeProductFiles,
 } from '../../../services/ProductService';
 import asyncHandler from '../../../utils/asyncHandler';
@@ -8,31 +9,33 @@ import parseFormData from '../../../utils/parseFormData';
 
 const handlers = {
   GET: async (req, res) => {
-    const { lim } = req.query;
+    const { lim, skip } = req.query;
 
-    const testProducts = [
-      {
-        id: 1,
-        slug: 'blue-haze-1gr-indica',
-        name: 'Gorila Glue',
-        price: 30000,
-      },
-      {
-        id: 2,
-        slug: 'blue-haze-1gr-indica',
-        name: 'Blue Dream',
-        price: 85000,
-      },
-      {
-        id: 3,
-        slug: 'blue-haze-1gr-indica',
-        name: 'Gelato',
-        price: 60000,
-      },
-    ];
+    const [findError, products] = await asyncHandler(
+      getProducts({
+        query: {},
+        select: {
+          name: 1,
+          slug: 1,
+          price: 1,
+          thumb: 1,
+          assetPath: 1,
+          stock: 1,
+        },
+        lim,
+        skip,
+        lean: true,
+      })
+    );
+
+    if (findError)
+      return res.status(500).json({
+        message: 'There was an error while retrieving the documents',
+        error: process.env.NODE_ENV !== 'production' ? findError : undefined,
+      });
 
     return res.status(200).json({
-      products: testProducts,
+      products: products.map(p => ({ ...p, id: p._id, _id: undefined })),
     });
   },
 
@@ -44,7 +47,7 @@ const handlers = {
     if (createError) {
       return res.status(400).json({
         message: 'Error while saving the product',
-        error: process.env.DEBUG ? createError : undefined,
+        error: process.env.NODE_ENV !== 'production' ? createError : undefined,
       });
     }
 
@@ -57,6 +60,21 @@ const handlers = {
         product,
         warn: { message: 'Images could not be uploaded', error: writeError },
       });
+
+    files.forEach(f => {
+      product.pics.push(f.originalFilename);
+    });
+
+    product.thumb = product.pics[0];
+
+    const [saveError] = await asyncHandler(product.save());
+
+    if (saveError) {
+      return res.status(400).json({
+        message: 'Error while saving the product',
+        error: process.env.NODE_ENV !== 'production' ? createError : undefined,
+      });
+    }
 
     return res.status(201).json({
       product,
@@ -85,7 +103,7 @@ export default async function index(req, res) {
   if (connectError)
     return res.status(500).json({
       message: 'Error while connecting to db',
-      error: process.env.DEBUG ? connectError : undefined,
+      error: process.env.NODE_ENV !== 'production' ? connectError : undefined,
     });
 
   return await handler(req, res);
