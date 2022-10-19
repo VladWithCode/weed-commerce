@@ -9,10 +9,13 @@ export const getProducts = async ({
   select,
   lim = 0,
   skip = 0,
+  lean = false,
 }) => {
   let q = Product.find(query).limit(lim).skip(skip);
 
   if (!isEmptyObject(select)) q.select(select);
+
+  if (lean) q.lean();
 
   return await q;
 };
@@ -24,6 +27,8 @@ export const createProduct = async data => {
     product.slug = product.name.toLowerCase().replace(/[\s,.]/g, '-');
 
   product.assetPath = '/products/' + product.slug + '/';
+
+  product.ctgs = data.ctgs?.split(',') || 'sin categoria';
 
   return await product.save();
 };
