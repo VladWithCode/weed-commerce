@@ -7,14 +7,14 @@ import {
 import { join } from 'node:path';
 import asyncHandler from './asyncHandler';
 
-export function createDir(path, { r } = { r: false }) {
-  return mkdir(join(process.cwd(), path), {
+export async function createDir(path, { r } = { r: false }) {
+  return await mkdir(join(process.cwd(), path), {
     recursive: r,
   });
 }
 
-export function writeFile(file, name, path) {
-  return fsWriteFile(join(process.cwd(), path, name), file);
+export async function writeFile(file, name, path) {
+  return await fsWriteFile(join(process.cwd(), path, name), file);
 }
 
 export async function mvFile(from, to) {
