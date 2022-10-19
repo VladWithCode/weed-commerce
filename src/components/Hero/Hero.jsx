@@ -3,7 +3,7 @@ import { useInterval } from '../../hooks/useInterval';
 import Slide from './Slide';
 
 function Hero({ strains }) {
-  const [slide, setSlide] = useState(strains[0].id);
+  const [slide, setSlide] = useState(0);
 
   useInterval(() => {
     let l = strains.length;
