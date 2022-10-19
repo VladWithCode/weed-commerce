@@ -5,14 +5,17 @@ const ProductSchema = new Schema(
     name: { type: String, required: true },
     slug: { type: String },
     price: { type: Number },
-    description: { type: String, maxLength: 260 },
-    stock: { type: Number, min: 0, default: 0 },
-    ctg: { type: String },
-    tags: { type: [String] },
-    sold: { type: Number, default: 0 },
+    unit: { type: String, enum: ['gr', 'kg', 'oz'] },
+    description: { type: String },
+
+    ctgs: { type: [String] },
     pics: { type: [String] },
-    thumb: { type: String },
+    thumb: { type: String, default: '/img/placeholder.jpg' },
     assetPath: { type: String },
+
+    stock: { type: Number, min: 0, default: 0 },
+    sold: { type: Number, default: 0 },
+    earnings: { type: Number, default: 0 },
   },
   { timeStamps: true }
 );
