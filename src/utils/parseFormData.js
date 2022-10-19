@@ -9,7 +9,11 @@ const parseFormData = async req => {
     form.parse(req, (err, fields, files) => {
       if (err) return reject(err);
 
-      return resolve({ data: fields, files: files.imgs });
+      const stFileResult = Array.isArray(files.file)
+        ? files.file
+        : [files.file];
+
+      return resolve({ data: fields, files: stFileResult });
     });
   });
 };
