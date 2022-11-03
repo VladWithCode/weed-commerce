@@ -1,14 +1,8 @@
 .btn {
-  @apply rounded-sm;
-  @apply bg-aux_2;
-  @apply p-2;
-
   transition: background 0.3s ease;
 
   &:hover {
     background: var(--color-aux_2);
     background: linear-gradient(-25deg, #e67ab8 0%, #65317a 80%, #65317a 100%);
-    @apply bg-opacity-100;
-    @apply text-white;
   }
 }
