@@ -9,11 +9,10 @@ import parseFormData from '../../../utils/parseFormData';
 
 const handlers = {
   GET: async (req, res) => {
-    const { lim, skip } = req.query;
+    const { limit, skip } = req.query;
 
     const [findError, products] = await asyncHandler(
       getProducts({
-        query: {},
         select: {
           name: 1,
           slug: 1,
@@ -22,8 +21,8 @@ const handlers = {
           assetPath: 1,
           stock: 1,
         },
-        lim,
-        skip,
+        limit: parseInt(limit),
+        skip: parseInt(skip),
         lean: true,
       })
     );
