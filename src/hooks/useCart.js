@@ -37,6 +37,7 @@ export const useCart = create(
           if (!wasInCart) {
             newItems.push({
               ...item,
+              stock: undefined,
               subtotal: item.price,
               qty: 1,
             });
