@@ -1,20 +1,26 @@
 .--scroll {
+  --size: 0.35rem;
+
+  &-thick {
+    --size: 0.5rem;
+  }
+
   &-x {
     &::-webkit-scrollbar {
       width: auto;
-      height: 0.75rem;
+      height: var(--size);
     }
   }
 
   &-y {
     &::-webkit-scrollbar {
       height: auto;
-      width: 0.75rem;
+      width: var(--size);
     }
   }
 
   &::-webkit-scrollbar {
-    @apply bg-gray-400;
+    @apply bg-transparent;
   }
 
   &::-webkit-scrollbar-thumb {
