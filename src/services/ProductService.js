@@ -7,11 +7,11 @@ import isEmptyObject from '../utils/isEmptyObject';
 export const getProducts = async ({
   query = {},
   select,
-  lim = 0,
+  limit = 0,
   skip = 0,
   lean = false,
 }) => {
-  let q = Product.find(query).limit(lim).skip(skip);
+  let q = Product.find(query).limit(limit).skip(skip);
 
   if (!isEmptyObject(select)) q.select(select);
 
