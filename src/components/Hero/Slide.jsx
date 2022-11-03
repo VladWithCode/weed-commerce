@@ -21,8 +21,8 @@ function Slide({ strain, slideId, currentSlide }) {
         {strain.name}
       </h1>
       <Link href={'/tienda/strains/'.concat(strain.slug)}>
-        <a className='row-start-3 col-start-2 justify-self-center self-start btn rounded-sm text-md text-white font-normal font-secondary z-30'>
-          Comprar ya
+        <a className='btn bg-aux_1 p-2 row-start-3 col-start-2 justify-self-center self-start rounded-sm text-md text-white font-normal font-secondary z-30'>
+          Compralo ahora
         </a>
       </Link>
     </div>
