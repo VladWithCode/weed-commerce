@@ -1,32 +1,33 @@
 import Image from 'next/image';
 import React from 'react';
 import { useCart } from '../../hooks/useCart';
+import getClassname from '../../utils/getClassname';
 import { priceToString } from '../../utils/numberToString';
+import Button from '../globals/Button';
 import Card from '../globals/Card';
 
-function ProductCard({ product, className: csName }) {
-  const className = 'bg-zinc-900 grow-0 shadow-gray-900 shadow';
+function ProductCard({ product, className }) {
   const addItem = useCart(state => state.addItem);
 
   return (
-    <Card className={csName?.length > 0 ? className + ' ' + csName : className}>
+    <Card
+      className={getClassname(
+        'bg-zinc-900 grow-0 shadow-gray-900 shadow',
+        className
+      )}>
       <Image src={product.assetPath + product.thumb} width={200} height={400} />
-      <div className='flex justify-between items-center basis-11/12 p-2'>
-        <h1 className='text-xl font-semibold uppercase overflow-hidden overflow-ellipsis'>
+      <div className='flex justify-between items-center h-12 p-2'>
+        <p className='w-1/2 text-xl font-semibold uppercase overflow-hidden overflow-ellipsis whitespace-nowrap'>
           {product.name}
-        </h1>
+        </p>
         <p className='text-xl font-light'>
           $ {priceToString(product.price)}MXN
         </p>
       </div>
-      <div className='p-2' onClick={e => addItem(product)}>
-        <button className='btn w-full font-bold'>Añadir al carrito</button>
-      </div>
-      <div className='p-2'>
-        <button className='btn btn-white  w-full font-bold'>
-          Comprar ahora
-        </button>
-      </div>
+      <Button className='w-11/12 mb-2 mx-auto' onClick={() => addItem(product)}>
+        Añadir al carrito
+      </Button>
+      <Button className='w-11/12 mb-2 mx-auto'>Comprar Ahora</Button>
     </Card>
   );
 }
