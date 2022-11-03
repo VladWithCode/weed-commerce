@@ -5,6 +5,9 @@
     --size: 0.5rem;
   }
 
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-aux_2) transparent;
+
   &-x {
     &::-webkit-scrollbar {
       width: auto;
