@@ -1,12 +1,14 @@
 import React from 'react';
+import getClassname from '../../utils/getClassname';
 
 function Button({ children, onClick, type, className }) {
-  const _className = 'btn';
-
   return (
     <button
       type={type || 'button'}
-      className={_className.concat(className ? ' ' + className : '')}
+      className={getClassname(
+        'rounded-sm bg-secondary btn p-2 hover:bg-opacity-100 hover:text-white',
+        className
+      )}
       onClick={onClick}>
       {children}
     </button>
