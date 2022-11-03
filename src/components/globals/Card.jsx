@@ -1,11 +1,16 @@
 import React from 'react';
+import getClassname from '../../utils/getClassname';
 
-function Card({ className: csName, children }) {
-  const className =
-    'flex flex-col rounded-sm text-white shrink-0 basis-80 overflow-hidden';
+function Card({ className: csName, children, replaceBaseClass = false }) {
+  const className = 'basis-80 flex-col';
 
   return (
-    <div className={csName?.length > 0 ? className + ' ' + csName : className}>
+    <div
+      className={getClassname(
+        'flex rounded-sm text-white shrink-0 overflow-hidden',
+        !replaceBaseClass ? className : null,
+        csName
+      )}>
       {children}
     </div>
   );
