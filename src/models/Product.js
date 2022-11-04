@@ -8,14 +8,16 @@ const ProductSchema = new Schema(
     unit: { type: String, enum: ['gr', 'kg', 'oz'] },
     description: { type: String },
 
-    ctgs: { type: [String] },
+    category: { type: Schema.Types.ObjectId, ref: 'Category' },
     pics: { type: [String] },
     thumb: { type: String, default: '/img/placeholder.jpg' },
     assetPath: { type: String },
+    absolutePath: { type: String },
 
     stock: { type: Number, min: 0, default: 0 },
-    sold: { type: Number, default: 0 },
-    earnings: { type: Number, default: 0 },
+    sold: { type: Number, default: 0, select: false },
+    buyPrice: { type: Number, default: 0, select: false },
+    earnings: { type: Number, default: 0, select: false },
   },
   { timeStamps: true }
 );
