@@ -1,4 +1,5 @@
 import { IncomingForm } from 'formidable';
+import isEmptyObject from './isEmptyObject';
 
 const parseFormData = async req => {
   return await new Promise((resolve, reject) => {
@@ -13,7 +14,10 @@ const parseFormData = async req => {
         ? files.file
         : [files.file];
 
-      return resolve({ data: fields, files: stFileResult });
+      return resolve({
+        data: fields,
+        files: !isEmptyObject(files) ? stFileResult : [],
+      });
     });
   });
 };
