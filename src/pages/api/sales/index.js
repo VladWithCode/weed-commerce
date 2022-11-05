@@ -1,21 +1,11 @@
-import {
-  createProduct,
-  getAllProducts,
-} from '../../../services/ProductService';
-import connectMongo from '../../../utils/db';
+import { createSale } from '../../../services/SaleService';
 
 const handlers = {
-  GET: getAllProducts,
-  POST: createProduct,
+  GET: () => {},
+  POST: createSale,
 };
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-export default async function index(req, res) {
+export default async function sales(req, res) {
   const methodHandler = handlers[req.method];
 
   if (!methodHandler)

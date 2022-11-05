@@ -1,19 +1,6 @@
-import {
-  createProduct,
-  getAllProducts,
-} from '../../../services/ProductService';
-import connectMongo from '../../../utils/db';
+import { requestErrorHandler } from '../../../../utils/backend/requestErrorHandler';
 
-const handlers = {
-  GET: getAllProducts,
-  POST: createProduct,
-};
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+const handlers = {};
 
 export default async function index(req, res) {
   const methodHandler = handlers[req.method];
