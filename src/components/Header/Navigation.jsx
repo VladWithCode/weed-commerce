@@ -39,17 +39,22 @@ function Navigation({ setIsActive }) {
             </a>
           </Link>
         </li>
-        <li className='hover:underline hover:text-secondary underline-offset-4'>
+        {/* <li className='hover:underline hover:text-secondary underline-offset-4'>
           <Link href='/cepas'>
             <a onClick={closeMenuOnClick}>Las mejores cepas</a>
           </Link>
-        </li>
+        </li> */}
         <li className='hover:underline hover:text-secondary underline-offset-4'>
-          <Link href='/'>
+          <Link href='/tienda'>
             <a onClick={closeMenuOnClick}>Tienda</a>
           </Link>
         </li>
         <li className='hover:underline hover:text-secondary underline-offset-4'>
+          <Link href='/contacto'>
+            <a onClick={closeMenuOnClick}>Contacto</a>
+          </Link>
+        </li>
+        {/* <li className='hover:underline hover:text-secondary underline-offset-4'>
           <Link href='/accesorios'>
             <a onClick={closeMenuOnClick}>Vapes</a>
           </Link>
@@ -58,7 +63,7 @@ function Navigation({ setIsActive }) {
           <Link href='/accesorios'>
             <a onClick={closeMenuOnClick}>Accesorios</a>
           </Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

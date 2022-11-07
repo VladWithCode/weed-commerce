@@ -21,7 +21,7 @@ function Menu({ isActive, setIsActive }) {
           />
         </div>
         <Navigation setIsActive={setIsActive} />
-        <Usefull />
+        {/* <Usefull /> */}
         <button
           className='absolute top-5 right-3 2xl:right-12'
           onClick={e => setIsActive(false)}>
