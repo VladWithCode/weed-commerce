@@ -20,6 +20,7 @@ export const getAllProducts = async (req, res) => {
     })
     .limit(parseInt(limit))
     .skip(parseInt(skip))
+    .transform(docs => docs.map(doc => ({ ...doc, id: doc._id })))
     .lean();
 
   const [findError, products] = await asyncHandler(q.exec());
