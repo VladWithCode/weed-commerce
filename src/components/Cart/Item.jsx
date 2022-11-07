@@ -9,7 +9,7 @@ function Item({ item }) {
 
   return (
     <Card
-      className='flex-row justify-between items-center basis-40 shadow-sm shadow-zinc-700'
+      className='flex-row justify-between items-center basis-40 border-indigo-500 border-b-2'
       replaceBaseClass={true}>
       <Image
         width={160}
@@ -22,11 +22,11 @@ function Item({ item }) {
       </p>
       <div className='flex grow-0 basis-12 justify-start items-center h-1/2'>
         <Button
-          className='text-md basis-8'
+          className='text-md basis-8 rounded-tr-none rounded-br-none'
           onClick={() =>
             setQty(qty => {
               if (qty === 1) return qty;
-              qty - 1;
+              return qty - 1;
             })
           }>
           -
@@ -43,7 +43,7 @@ function Item({ item }) {
             })
           }></input>
         <Button
-          className='text-md basis-8'
+          className='text-md basis-8 rounded-tl-none rounded-bl-none'
           onClick={() => setQty(qty => qty + 1)}>
           +
         </Button>

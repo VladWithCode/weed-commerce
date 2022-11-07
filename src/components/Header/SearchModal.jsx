@@ -1,11 +1,13 @@
 import React from 'react';
+import getClassname from '../../utils/getClassname';
 import Search from '../Search/Search';
 
 function SearchModal({ isActive, setIsActive }) {
   return (
     <div
-      className={'search-modal flex flex-col items-center left-0 right-0 bg-white p-4 z-30 border-b-4 border-secondary font-secondary font-bold'.concat(
-        isActive ? ' active' : ''
+      className={getClassname(
+        'search-modal h-40 flex flex-col items-center left-0 right-0 bg-white p-4 z-30 border-b-4 border-indigo-500 font-secondary font-bold',
+        isActive ? ' active' : null
       )}>
       <div className='flex justify-between items-center w-full max-w-4xl z-10'>
         <p className='text-primary text-xl font-semibold font-secondary py-5 px-2 mr-auto'>
