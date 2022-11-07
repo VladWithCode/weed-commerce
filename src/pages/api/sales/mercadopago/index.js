@@ -11,9 +11,10 @@ export default async function index(req, res) {
   const connectError = await connectMongo();
 
   if (connectError)
-    return res.status(500).json({
-      message: 'Error while connecting to db',
-      error: process.env.NODE_ENV !== 'production' ? connectError : undefined,
+    return requestErrorHandler(connectError, {
+      req,
+      res,
+      customMessage: 'Error while connecting to db',
     });
 
   return await methodHandler(req, res);
