@@ -1,15 +1,19 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
-import Button from '../../components/globals/Button';
+import React from 'react';
 import Card from '../../components/globals/Card';
+import { useCart } from '../../hooks/useCart';
 import { priceToString } from '../../utils/numberToString';
 
-function Item({ item }) {
-  const [qty, setQty] = useState(item.qty || 0);
+function Item({ id, setQty }) {
+  const items = useCart(state => state.items);
+
+  const item = items.find(it => it.id === id);
+
+  if (!item) return <></>;
 
   return (
     <Card
-      className='flex-row justify-between items-center basis-40 border-indigo-500 border-b-2'
+      className='flex-row basis-40 border-indigo-500 border-b-2 border-opacity-10'
       replaceBaseClass={true}>
       <Image
         width={160}
@@ -17,39 +21,14 @@ function Item({ item }) {
         objectFit='cover'
         src={item.assetPath + item.thumb}
       />
-      <p className='text-2xl grow-0 overflow-hidden text-ellipsis'>
-        {item.name}
-      </p>
-      <div className='flex grow-0 basis-12 justify-start items-center h-1/2'>
-        <Button
-          className='text-md basis-8 rounded-tr-none rounded-br-none'
-          onClick={() =>
-            setQty(qty => {
-              if (qty === 1) return qty;
-              return qty - 1;
-            })
-          }>
-          -
-        </Button>
-        <input
-          type='text'
-          className='py-2 text-center text-md text-zinc-800 w-12 bg-white bg-opacity-80 outline-none focus:bg-opacity-100'
-          value={qty}
-          onChange={({ target }) =>
-            setQty(() => {
-              let v = target.value;
-              if (v < 1 || isNaN(v)) return 1;
-              return v;
-            })
-          }></input>
-        <Button
-          className='text-md basis-8 rounded-tl-none rounded-bl-none'
-          onClick={() => setQty(qty => qty + 1)}>
-          +
-        </Button>
+      <div className='grow-2 mt-4 ml-4 h-32 flex flex-col'>
+        <p className='text-2xl overflow-hidden text-ellipsis'>{item.name}</p>
       </div>
-      <div className='grow-0'>
-        <span className='text-xl px-4'>${priceToString(item.price)}</span>
+      <div className='grow-1 my-auto mt-2 ml-auto px-4'>
+        <span className='text-gray-500 font-semibold pr-2'>
+          {item.qty}&times;
+        </span>
+        <span className='text-xl'>${priceToString(item.price)}</span>
       </div>
     </Card>
   );
