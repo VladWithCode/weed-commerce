@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Item from '../../components/Cart/Item';
-import Button from '../../components/globals/Button';
+import Item from '../../components/Cart/EditableItem';
+import GoToCheckout from '../../components/Cart/GoToCheckout';
 import Loading from '../../components/globals/Loading';
 import { useCart } from '../../hooks/useCart';
 
@@ -10,7 +10,7 @@ function Carrito({}) {
 
   useEffect(() => {
     setCart(store);
-  }, []);
+  }, [store]);
 
   return (
     <div className='relative'>
@@ -19,17 +19,26 @@ function Carrito({}) {
       ) : (
         <>
           <span className='block h-24 mb-4' />
-          <div className='px-2 py-4 mx-auto text-white rounded'>
-            <h1 className='text-4xl px-4 font-bold uppercase'>Carrito</h1>
-            <div className='flex flex-col max-h-[60vh] my-2 p-2 space-y-2 overflow-y-auto --scroll --scroll-y'>
-              {cart.items.map(item => (
-                <Item item={item} key={item.id} />
-              ))}
-            </div>
-            <div className='cart-controls'></div>
-            <div className='cart-totals'></div>
-            <div className='flex mt-4'>
-              <Button className='ml-auto'>Finalizar Compra</Button>
+          <div className='container py-4 mx-auto text-white'>
+            <h1 className='text-4xl px-4 pb-12 font-medium uppercase'>
+              Carrito
+            </h1>
+
+            <div className='flex flex-col space-y-8 lg:flex-row lg:space-x-4 lg:space-y-0 p-4'>
+              <div className='lg:hidden'>
+                <GoToCheckout count={cart.count} subtotal={cart.subtotal} />
+              </div>
+              <div className='basis-4/5'>
+                <div className='flex flex-col p-4 space-y-6 border-indigo-500 border-2 rounded border-opacity-25 bg-zinc-800'>
+                  {cart.items.map(item => (
+                    <Item id={item.id} key={item.id} setQty={cart.setItemQty} />
+                  ))}
+                </div>
+                <div className='cart-controls'></div>
+              </div>
+              <div className='basis-3/12'>
+                <GoToCheckout count={cart.count} subtotal={cart.subtotal} />
+              </div>
             </div>
           </div>
         </>
