@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { useCart } from '../../hooks/useCart';
+import { useToast } from '../../hooks/useToast';
 import getClassname from '../../utils/getClassname';
 import { priceToString } from '../../utils/numberToString';
 import Button from '../globals/Button';
@@ -8,6 +9,12 @@ import Card from '../globals/Card';
 
 function ProductCard({ product, className }) {
   const addItem = useCart(state => state.addItem);
+  const displayToast = useToast(state => state.displayToast);
+
+  const onAddToCartClick = () => {
+    addItem(product);
+    displayToast('Producto añadido al carrito');
+  };
 
   return (
     <Card
@@ -24,7 +31,7 @@ function ProductCard({ product, className }) {
           $ {priceToString(product.price)}MXN
         </p>
       </div>
-      <Button className='w-11/12 mb-2 mx-auto' onClick={() => addItem(product)}>
+      <Button className='w-11/12 mb-2 mx-auto' onClick={onAddToCartClick}>
         Añadir al carrito
       </Button>
       <Button className='w-11/12 mb-2 mx-auto'>Comprar Ahora</Button>
