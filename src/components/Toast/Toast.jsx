@@ -12,7 +12,7 @@ function Toast() {
   const toastStore = useToast();
 
   const onCloseClick = () => {
-    toastStore.setIsActive(false);
+    toastStore.reset();
   };
 
   return (
