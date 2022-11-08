@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Header from '../components/Header/Header';
+import Toast from '../components/Toast/Toast';
 import FloatingBtn from '../components/Whatsapp/FloatingBtn';
 import '../styles/main.css';
 
@@ -19,6 +20,8 @@ function MyApp({ Component, pageProps }) {
 
         <FloatingBtn />
       </QueryClientProvider>
+
+      <Toast />
     </>
   );
 }

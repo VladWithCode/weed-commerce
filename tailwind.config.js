@@ -19,6 +19,12 @@ module.exports = {
       gridTemplateRows: {
         hero: 'minmax(5rem, 1fr) repeat(2, minmax(max-content, 30vh))',
       },
+      transitionProperty: {
+        top: 'top',
+        right: 'right',
+        bottom: 'bottom',
+        left: 'left',
+      },
     },
   },
   plugins: [],
