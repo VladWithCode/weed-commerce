@@ -3,7 +3,7 @@ import create from 'zustand';
 const TOAST_INITIAL_STATE = {
   message: '',
   type: 'message', // message | error | warn
-  isActive: true,
+  isActive: false,
 };
 
 export const useToast = create((set, get) => ({
@@ -29,5 +29,5 @@ export const useToast = create((set, get) => ({
     set(() => ({ message, type: 'warn', isActive: true }));
   },
 
-  resetToast: () => set(() => TOAST_INITIAL_STATE),
+  reset: () => set(() => TOAST_INITIAL_STATE),
 }));

@@ -18,7 +18,7 @@ function Toast() {
   return (
     <div
       className={getClassname(
-        'flex space-x-4 items-center fixed bottom-20 -right-full max-w-4/5 border-2 border-opacity-80 py-1 rounded transition-[right] duration-300',
+        'flex space-x-4 items-center fixed bottom-20 lg:bottom-28 -right-full max-w-4/5 border-2 border-opacity-80 py-1 rounded transition-[right] duration-300',
         typeClassnames[toastStore.type],
         toastStore.isActive ? 'right-6' : null
       )}>
