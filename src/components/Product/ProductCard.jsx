@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { useCart } from '../../hooks/useCart';
 import { useToast } from '../../hooks/useToast';
@@ -19,14 +20,24 @@ function ProductCard({ product, className }) {
   return (
     <Card
       className={getClassname(
-        'bg-zinc-900 grow-0 shadow-gray-900 shadow',
+        'flex-col bg-zinc-800 grow-0 shadow-gray-900 shadow rounded border-2 border-indigo-500 border-opacity-10 basis-80',
         className
-      )}>
-      <Image src={product.assetPath + product.thumb} width={200} height={400} />
+      )}
+      replaceBaseClass={true}>
+      <Link href={`/products/${product.id}`}>
+        <Image
+          src={product.assetPath + product.thumb}
+          width={180}
+          height={360}
+          className='hover:scale-95 active:scale-95'
+        />
+      </Link>
       <div className='flex justify-between items-center h-12 p-2'>
-        <p className='w-1/2 text-xl font-semibold uppercase overflow-hidden overflow-ellipsis whitespace-nowrap'>
-          {product.name}
-        </p>
+        <Link href={`/products/${product.id}`}>
+          <a className='w-1/2 text-xl font-semibold uppercase overflow-hidden overflow-ellipsis whitespace-nowrap hover:text-violet-500 active:text-violet-500'>
+            {product.name}
+          </a>
+        </Link>
         <p className='text-xl font-light'>
           $ {priceToString(product.price)}MXN
         </p>
