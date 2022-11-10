@@ -19,20 +19,6 @@ export const createCategory = async (req, res) => {
 };
 
 export const findAllCategories = async (req, res) => {
-  const products = await Product.find({}).lean();
-  let productIds = {};
-
-  for (let p of products) {
-    const ctgId = String(p.category);
-    if (!productIds[ctgId]) productIds[ctgId] = [];
-
-    productIds[ctgId].push(String(p._id));
-  }
-  /* 
-  const { topCtgs } = req.query;
-
-  if (topCtgs === 'true') return await findTopCategories(req, res);
- */
   const [findError, foundCategories] = await asyncHandler(
     Category.find({}, '-__v').lean()
   );
@@ -43,14 +29,6 @@ export const findAllCategories = async (req, res) => {
       req,
       res,
     });
-
-  for (let ctg of foundCategories) {
-    ctg.products = productIds[String(ctg._id)];
-  }
-
-  console.log(foundCategories);
-
-  await Category.bulkSave(foundCategories);
 
   return res.json({ result: 'OK', categories: foundCategories });
 };
