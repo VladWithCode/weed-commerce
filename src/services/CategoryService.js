@@ -1,4 +1,5 @@
 import Category from '../models/Category';
+import Product from '../models/Product';
 import asyncHandler from '../utils/asyncHandler';
 import { requestErrorHandler } from '../utils/backend/requestErrorHandler';
 
@@ -18,6 +19,20 @@ export const createCategory = async (req, res) => {
 };
 
 export const findAllCategories = async (req, res) => {
+  const products = await Product.find({}).lean();
+  let productIds = {};
+
+  for (let p of products) {
+    const ctgId = String(p.category);
+    if (!productIds[ctgId]) productIds[ctgId] = [];
+
+    productIds[ctgId].push(String(p._id));
+  }
+  /* 
+  const { topCtgs } = req.query;
+
+  if (topCtgs === 'true') return await findTopCategories(req, res);
+ */
   const [findError, foundCategories] = await asyncHandler(
     Category.find({}, '-__v').lean()
   );
@@ -29,5 +44,40 @@ export const findAllCategories = async (req, res) => {
       res,
     });
 
+  for (let ctg of foundCategories) {
+    ctg.products = productIds[String(ctg._id)];
+  }
+
+  console.log(foundCategories);
+
+  await Category.bulkSave(foundCategories);
+
   return res.json({ result: 'OK', categories: foundCategories });
+};
+
+export const findTopCategories = async (req, res) => {
+  const [findError, foundCategories] = await asyncHandler(
+    Category.find({}, '-__v')
+      .limit(6)
+      .populate({
+        path: 'products',
+        select: 'name price thumb assetPath',
+        match: { stock: { $gt: 0 } },
+        options: {
+          options: {
+            limit: 6,
+            lean: true,
+          },
+        },
+      })
+      .sort({ count: 1 })
+      .lean()
+  );
+
+  if (findError) return requestErrorHandler(findError, { req, res });
+
+  return res.json({
+    result: 'OK',
+    categories: foundCategories,
+  });
 };
