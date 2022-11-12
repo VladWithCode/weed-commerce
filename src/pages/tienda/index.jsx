@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../components/globals/Loading';
 import PageHeader from '../../components/globals/PageHeader';
-import Gallery from '../../components/Product/Gallery';
+import ProductListing from '../../components/store/ProductListing';
+import Sidebar from '../../components/store/Sidebar';
+import { useShop } from '../../hooks/useShop';
 import { fetchStoreTopCategories } from '../../utils/fetchers/categories';
 
 function Tienda() {
@@ -11,15 +13,48 @@ function Tienda() {
     fetchStoreTopCategories,
     { refetchOnWindowFocus: false }
   );
+  const initFilters = useShop(state => state.initFilters);
 
-  if (isLoading) return <Loading />;
+  useEffect(() => {
+    if (!isLoading && !isError)
+      initFilters([
+        {
+          key: 'Precios',
+          options: [
+            {
+              label: 'Desde',
+              id: 'price-from',
+              active: false,
+              value: null,
+            },
+            {
+              label: 'Hasta',
+              id: 'price-from',
+              active: false,
+              value: null,
+            },
+          ],
+        },
+        {
+          key: 'categories',
+          options: data.categories.map(ctg => ({
+            label: ctg.name,
+            id: ctg._id,
+            active: false,
+          })),
+        },
+      ]);
+  }, [isLoading, isError]);
 
-  console.log(data);
+  if (isLoading || !data) return <Loading />;
 
   return (
     <>
       <PageHeader>Productos OP</PageHeader>
-      <Gallery />
+      <div className='container py-6 mx-auto grid grid-cols-8 text-white'>
+        <Sidebar />
+        <ProductListing categories={data.categories} />
+      </div>
     </>
   );
 }
