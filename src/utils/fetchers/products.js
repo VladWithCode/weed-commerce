@@ -17,3 +17,22 @@ export const fetchProducts = async ({ limit = 0 }) => {
 
   return response.json();
 };
+
+export const fetchProductsPerCategory = async (
+  ctg,
+  { limit = 9, page = 1 }
+) => {
+  const response = await fetch(
+    `/api/products/per-category/${ctg}?limit=${limit}&page=${page}`,
+    {
+      headers: {
+        accept: 'application/json',
+      },
+    }
+  );
+  const data = await response.json();
+
+  if (!response.ok) throw new Error(data.message);
+
+  return data;
+};
