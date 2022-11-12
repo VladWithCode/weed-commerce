@@ -19,6 +19,8 @@ export const createCategory = async (req, res) => {
 };
 
 export const findAllCategories = async (req, res) => {
+  if (req.query.topCtgs === 'true') return findTopCategories(req, res);
+
   const [findError, foundCategories] = await asyncHandler(
     Category.find({}, '-__v').lean()
   );
@@ -35,20 +37,19 @@ export const findAllCategories = async (req, res) => {
 
 export const findTopCategories = async (req, res) => {
   const [findError, foundCategories] = await asyncHandler(
-    Category.find({}, '-__v')
-      .limit(6)
+    Category.find({ count: { $gt: 0 } }, '-__v')
       .populate({
         path: 'products',
         select: 'name price thumb assetPath',
-        match: { stock: { $gt: 0 } },
+        transform: doc => ({ ...doc, id: doc._id }),
         options: {
           options: {
-            limit: 6,
+            limit: 4,
             lean: true,
           },
         },
       })
-      .sort({ count: 1 })
+      .sort({ count: -1 })
       .lean()
   );
 
