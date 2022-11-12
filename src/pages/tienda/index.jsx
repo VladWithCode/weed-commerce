@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../components/globals/Loading';
 import PageHeader from '../../components/globals/PageHeader';
-import ProductListing from '../../components/store/ProductListing';
+import CategoryListing from '../../components/store/CategoryListing';
 import Sidebar from '../../components/store/Sidebar';
 import { useShop } from '../../hooks/useShop';
 import { fetchStoreTopCategories } from '../../utils/fetchers/categories';
@@ -53,7 +53,7 @@ function Tienda() {
       <PageHeader>Productos OP</PageHeader>
       <div className='container py-6 mx-auto grid grid-cols-8 text-white'>
         <Sidebar />
-        <ProductListing categories={data.categories} />
+        <CategoryListing categories={data.categories} />
       </div>
     </>
   );
