@@ -20,17 +20,19 @@ function ProductCard({ product, className }) {
   return (
     <Card
       className={getClassname(
-        'flex-col bg-zinc-800 grow-0 shadow-gray-900 shadow rounded border-2 border-indigo-500 border-opacity-10 basis-80',
+        'flex-col bg-gray-800 grow-0 shadow-gray-900 shadow rounded border-2 border-indigo-500 border-opacity-10 basis-80',
         className
       )}
       replaceBaseClass={true}>
       <Link href={`/products/${product.id}`}>
-        <Image
-          src={product.assetPath + product.thumb}
-          width={180}
-          height={360}
-          className='hover:scale-95 active:scale-95'
-        />
+        <>
+          <Image
+            src={product.assetPath + product.thumb}
+            width={180}
+            height={360}
+            className='hover:scale-95 active:scale-95 cursor-pointer'
+          />
+        </>
       </Link>
       <div className='flex justify-between items-center h-12 p-2'>
         <Link href={`/products/${product.id}`}>
