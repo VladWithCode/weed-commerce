@@ -4,6 +4,7 @@ import { createDir, mvFile } from '../utils/fs';
 import { join } from 'path';
 import { requestErrorHandler } from '../utils/backend/requestErrorHandler';
 import parseFormData from '../utils/parseFormData';
+import Category from '../models/Category';
 
 export const getAllProducts = async (req, res) => {
   let { limit, page } = req.query;
@@ -89,6 +90,46 @@ export async function getProductById(req, res) {
   return res.json({
     result: 'OK',
     product: { ...product.toJSON(), category: product.category.name },
+  });
+}
+
+export async function getProductsByCategory(req, res) {
+  const { ctg } = req.query;
+  const { limit, page } = req.query;
+  const skip = (page - 1) * limit;
+
+  const [findError, category] = await asyncHandler(
+    Category.findOne({ name: ctg })
+      .populate({
+        path: 'products',
+        select: 'name slug price unit description thumb assetPath stock',
+        transform: doc => ({
+          ...doc,
+          id: doc._id,
+          category: ctg,
+        }),
+        options: {
+          options: {
+            skip: parseInt(skip),
+            limit: parseInt(limit),
+            lean: true,
+          },
+        },
+      })
+      .lean()
+  );
+
+  if (findError || !category)
+    return requestErrorHandler(findError, {
+      req,
+      res,
+      customError: 'Error al recuperar los productos',
+    });
+
+  return res.json({
+    result: 'OK',
+    products: category.products,
+    pages: Math.ceil(category.count / limit),
   });
 }
 
