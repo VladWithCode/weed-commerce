@@ -1,104 +1,50 @@
 import React, { useMemo, useReducer } from 'react';
+import PaginationButton from './PaginationButton';
 
-const createPaginationSelectors = pageCount => {
+const createPaginationSelectors = ({ page, pageCount, category }) => {
   let selectors = [];
 
   for (let i = 0; i < pageCount; i++) {
     selectors.push(
-      <li className='flex items-center px-4 bg-secondary border-y-2 border-r-2 border-rose-300'>
+      <PaginationButton
+        page={i + 1}
+        category={category}
+        className={
+          page === i + 1
+            ? 'underline underline-offset-2 pointer-events-none bg-opacity-90'
+            : undefined
+        }>
         {i + 1}
-      </li>
+      </PaginationButton>
     );
   }
 
   return selectors;
 };
 
-function Pagination({ page, pages }) {
-  const [state, dispatch] = useReducer(paginationReducer, {
-    page: page,
-    nextPage: null,
-    prevPage: null,
-    pages: pages,
-  });
+function Pagination({ page, pages, category }) {
   const pageSelectors = useMemo(
-    () => createPaginationSelectors(pages),
-    [pages]
+    () => createPaginationSelectors({ page, pageCount: pages, category }),
+    [page, pages, category]
   );
 
   return (
     <ul className='col-start-3 col-span-6 justify-self-center flex h-12 list-none border-collapse'>
-      <li className='flex items-center px-4 bg-secondary border-2 border-rose-300 rounded-l'>
-        Primera
-      </li>
+      <PaginationButton
+        page={1}
+        category={category}
+        className='border-2 rounded-l'
+        replaceClassname={true}>
+        Previa
+      </PaginationButton>
+
       {pageSelectors}
-      <li className='flex items-center px-4 bg-secondary border-y-2 border-r-2 border-rose-300 border-collapse rounded-r'>
-        Última
-      </li>
+
+      <PaginationButton page={pages} category={category} className='rounded-r'>
+        Siguiente
+      </PaginationButton>
     </ul>
   );
 }
 
 export default Pagination;
-
-const paginationReducer = (state, action) => {
-  const { type, payload } = action;
-
-  const reducerActions = {
-    setPage: page => {
-      let nextPage = page + 1;
-      let prevPage = page - 1;
-
-      return {
-        ...state,
-        page: page,
-        nextPage: nextPage > state.pages ? state.pages : nextPage,
-        prevPage: prevPage < 1 ? 1 : prevPage,
-      };
-    },
-
-    gotoPrevPage: () => {
-      let nextPage = state.page;
-      let page = nextPage - 1;
-      let prevPage = page - 1;
-
-      return {
-        ...state,
-        page: page,
-        nextPage: nextPage > state.pages ? state.pages : nextPage,
-        prevPage: prevPage < 1 ? 1 : prevPage,
-      };
-    },
-
-    gotoNextPage: () => {
-      let prevPage = state.page;
-      let page = nextPage + 1;
-      let nextPage = page + 1;
-
-      return {
-        ...state,
-        page: page,
-        nextPage: nextPage > state.pages ? state.pages : nextPage,
-        prevPage: prevPage < 1 ? 1 : prevPage,
-      };
-    },
-
-    goToStart: () => {
-      return {
-        ...state,
-        page: 1,
-        nextPage: nextPage > state.pages ? state.pages : nextPage,
-        prevPage: prevPage < 1 ? 1 : prevPage,
-      };
-    },
-
-    goToEnd: () => {
-      return {
-        ...state,
-        page: state.pages,
-        nextPage: nextPage > state.pages ? state.pages : nextPage,
-        prevPage: prevPage < 1 ? 1 : prevPage,
-      };
-    },
-  };
-};
