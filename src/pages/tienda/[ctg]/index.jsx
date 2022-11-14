@@ -30,7 +30,7 @@ function PerCategory() {
       <div className='container py-6 mx-auto grid grid-cols-8 gap-y-6 text-white'>
         {/* <Sidebar /> */}
         <ProductListing products={data.products} />
-        <Pagination page={page} pages={data.pages} />
+        <Pagination page={page} pages={data.pages} category={category} />
       </div>
     </>
   );
