@@ -41,7 +41,10 @@ export const createProduct = async (req, res) => {
   const product = new Product(data);
 
   if (!product.slug)
-    product.slug = product.name.toLowerCase().replace(/[\s,.]/g, '-');
+    product.slug = product.name
+      .toLowerCase()
+      .replace(/[\s,.]/g, '-')
+      .concat(Date.now().toString().slice(-6));
 
   product.assetPath = '/products/' + product.slug + '/';
   product.absolutePath = join(__dirname, '../../public/products', product.slug);
