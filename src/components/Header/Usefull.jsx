@@ -6,7 +6,7 @@ function Usefull() {
     <nav className='w-full px-4 text-md text-accent font-secondary font-light mb-8'>
       <ul className='flex flex-col list-none gap-y-6'>
         <li className='hover:text-white'>
-          <Link href='/iniciar'>
+          <Link href='/iniciar-sesion'>
             <a>Iniciar sesión</a>
           </Link>
         </li>
