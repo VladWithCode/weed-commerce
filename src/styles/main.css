@@ -24,6 +24,6 @@ body {
 }
 
 body {
-  @apply text-black;
+  @apply text-white;
   @apply bg-zinc-900;
 }
