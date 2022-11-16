@@ -13,7 +13,8 @@ const createPaginationSelectors = ({ page, pageCount, category }) => {
           page === i + 1
             ? 'underline underline-offset-2 pointer-events-none bg-opacity-90'
             : undefined
-        }>
+        }
+        key={i}>
         {i + 1}
       </PaginationButton>
     );
