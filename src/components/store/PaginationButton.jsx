@@ -13,7 +13,7 @@ function PaginationButton({
     <Link href={`/tienda/${category}/${page}`}>
       <li
         className={getClassname(
-          'flex items-center px-4 bg-secondary border-rose-300 cursor-pointer btn',
+          'flex items-center px-4 bg-secondary border-rose-300 border-opacity-60 cursor-pointer btn',
           !replaceClassname ? 'border-y-2 border-r-2' : null,
           className
         )}>
