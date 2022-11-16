@@ -24,7 +24,7 @@ function ProductCard({ product, className }) {
         className
       )}
       replaceBaseClass={true}>
-      <Link href={`/products/${product.id}`}>
+      <Link href={`/tienda/producto/${product.slug}`}>
         <>
           <Image
             src={product.assetPath + product.thumb}
@@ -35,7 +35,7 @@ function ProductCard({ product, className }) {
         </>
       </Link>
       <div className='flex justify-between items-center h-12 p-2'>
-        <Link href={`/products/${product.id}`}>
+        <Link href={`/tienda/producto/${product.slug}`}>
           <a className='w-1/2 text-xl font-semibold uppercase overflow-hidden overflow-ellipsis whitespace-nowrap hover:text-violet-500 active:text-violet-500'>
             {product.name}
           </a>
