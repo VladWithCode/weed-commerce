@@ -10,7 +10,7 @@ function Login() {
       <div className='container mx-auto py-12 grid grid-cols-2'>
         <form className='bg-gray-800 border-2 border-indigo-500 border-opacity-10 rounded col-start-1 p-4 mx-auto'>
           <h2 className='text-2xl pb-4 border-b-2'>Iniciar Sesión</h2>
-          <div className='w-80 flex flex-col pt-4'>
+          <div className='w-80 flex flex-col pt-4 px-3'>
             <Input
               label='Nombre de usuario'
               name='username'
