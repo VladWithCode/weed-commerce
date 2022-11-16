@@ -67,6 +67,22 @@ export const createProduct = async (req, res) => {
     writeProductFiles(files, savedProduct.assetPath)
   );
 
+  const [updateCategoryError] = await asyncHandler(
+    (async () => {
+      const category = await Category.findById(product.category);
+
+      if (!Array.isArray(category.products)) category.products = [];
+
+      category.products.push(product._id);
+
+      category.count = category.products.length;
+
+      return await category.save();
+    })()
+  );
+
+  if (updateCategoryError) console.log(updateCategoryError);
+
   return res.json({
     result: 'OK',
     warn: writeError
@@ -80,7 +96,10 @@ export async function getProductById(req, res) {
   const { id } = req.params;
 
   const [findError, product] = await Product.findById(id)
-    .populate('category')
+    .populate({
+      path: 'category',
+      transform: doc => doc.name,
+    })
     .lean();
 
   if (findError)
@@ -93,6 +112,27 @@ export async function getProductById(req, res) {
   return res.json({
     result: 'OK',
     product: { ...product.toJSON(), category: product.category.name },
+  });
+}
+
+export async function getProductBySlug(req, res) {
+  const { slug } = req.query;
+
+  const [findError, product] = await asyncHandler(
+    Product.findOne({ slug }, '-absolutePath')
+      .populate({
+        path: 'category',
+        transform: doc => doc.name,
+      })
+      .transform(doc => ({ ...doc, id: doc._id }))
+      .lean()
+  );
+
+  if (findError) console.error(findError);
+
+  return res.json({
+    result: 'OK',
+    product,
   });
 }
 
