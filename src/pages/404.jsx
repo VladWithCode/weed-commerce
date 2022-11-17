@@ -4,7 +4,7 @@ import Search from '../components/Search/Search';
 
 function Error404({}) {
   return (
-    <div className='w-full h-[calc(100vh-96px)] bg-white'>
+    <div className='w-full h-screen pt-24 bg-white'>
       <div className='container font-secondary font-bold text-gray-900 text-center mx-auto py-14 px-2'>
         <h1 className='text-8xl'>Ups...</h1>
         <p className='text-xl py-6 font-light'>
