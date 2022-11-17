@@ -40,7 +40,7 @@ export const findTopCategories = async (req, res) => {
     Category.find({ count: { $gt: 0 } }, '-__v')
       .populate({
         path: 'products',
-        select: 'name price thumb assetPath',
+        select: 'name slug price unit description thumb assetPath stock',
         transform: doc => ({ ...doc, id: doc._id }),
         options: {
           options: {
