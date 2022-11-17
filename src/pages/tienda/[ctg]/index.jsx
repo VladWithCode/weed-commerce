@@ -5,7 +5,7 @@ import Loading from '../../../components/globals/Loading';
 import PageHeader from '../../../components/globals/PageHeader';
 import Pagination from '../../../components/store/Pagination';
 import ProductListing from '../../../components/store/ProductListing';
-import { fetchProductsPerCategory } from '../../../utils/fetchers/products';
+import { fetchProductsByCategory } from '../../../utils/fetchers/products';
 
 function PerCategory() {
   const router = useRouter();
@@ -14,7 +14,7 @@ function PerCategory() {
 
   const { data, isLoading, isError } = useQuery(
     ['product-per-ctg', page, category],
-    () => fetchProductsPerCategory(category, { page: page })
+    () => fetchProductsByCategory(category, { page: page })
   );
 
   if (isLoading || !data)
