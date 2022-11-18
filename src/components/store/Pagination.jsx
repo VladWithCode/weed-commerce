@@ -30,7 +30,7 @@ function Pagination({ page, pages, category }) {
   );
 
   return (
-    <ul className='col-start-3 col-span-6 justify-self-center flex h-12 list-none border-collapse'>
+    <ul className='justify-self-center flex h-12 list-none border-collapse'>
       <PaginationButton
         page={1}
         category={category}

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../../../components/globals/Loading';
 import PageHeader from '../../../components/globals/PageHeader';
@@ -7,12 +7,13 @@ import Pagination from '../../../components/store/Pagination';
 import ProductListing from '../../../components/store/ProductListing';
 import { fetchProductsByCategory } from '../../../utils/fetchers/products';
 
-function PerCategory() {
+function CategoryPage() {
   const router = useRouter();
-  const category = router.query.ctg;
+  const { ctg: category, page } = router.query;
 
-  const { data, isLoading } = useQuery(['product-per-ctg', category], () =>
-    fetchProductsByCategory(category, { page: 1 })
+  const { data, isLoading, isError } = useQuery(
+    ['product-per-ctg', page, category],
+    () => fetchProductsByCategory(category, { page: page })
   );
 
   if (isLoading || !data)
@@ -31,11 +32,11 @@ function PerCategory() {
           <ProductListing products={data.products} />
         </div>
         <div className='justify-self-center xl:col-start-3 xl:col-span-6'>
-          <Pagination page={1} pages={data.pages} category={category} />
+          <Pagination page={page} pages={data.pages} category={category} />
         </div>
       </div>
     </>
   );
 }
 
-export default PerCategory;
+export default CategoryPage;
