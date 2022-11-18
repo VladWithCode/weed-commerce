@@ -5,15 +5,24 @@ import { useQuery } from 'react-query';
 import Button from '../../../components/globals/Button';
 import Loading from '../../../components/globals/Loading';
 import Carousel from '../../../components/Product/Carousel';
+import { useCart } from '../../../hooks/useCart';
+import { useToast } from '../../../hooks/useToast';
 import { fetchProductBySlug } from '../../../utils/fetchers/products';
 import { priceToString } from '../../../utils/numberToString';
 
 function Producto({}) {
+  const addItem = useCart(state => state.addItem);
+  const displayToast = useToast(state => state.displayToast);
   const { slug } = useRouter().query;
   const { data, isLoading, isError } = useQuery(
     ['fetch-single-product', slug],
     () => fetchProductBySlug(slug)
   );
+
+  const onAddToCartClick = () => {
+    addItem(data.product);
+    displayToast('Producto añadido al carrito');
+  };
 
   if (isLoading || !data?.product)
     return (
@@ -77,7 +86,9 @@ function Producto({}) {
             </p>
           </div>
           <div className='flex flex-col gap-y-4 xl:w-1/3 py-4'>
-            <Button className='px-4'>Agregar al carrito</Button>
+            <Button className='px-4' onClick={onAddToCartClick}>
+              Agregar al carrito
+            </Button>
             {/* <Button className='px-4'>Comprar ahora</Button> */}
           </div>
         </div>
