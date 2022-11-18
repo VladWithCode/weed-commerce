@@ -47,7 +47,7 @@ function ProductCard({ product, className }) {
       <Button className='w-11/12 mb-2 mx-auto' onClick={onAddToCartClick}>
         Añadir al carrito
       </Button>
-      <Button className='w-11/12 mb-2 mx-auto'>Comprar Ahora</Button>
+      {/* <Button className='w-11/12 mb-2 mx-auto'>Comprar Ahora</Button> */}
     </Card>
   );
 }
