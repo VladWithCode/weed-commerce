@@ -25,22 +25,20 @@ function ProductCard({ product, className }) {
       )}
       replaceBaseClass={true}>
       <Link href={`/tienda/producto/${product.slug}`}>
-        <>
-          <Image
-            src={product.assetPath + product.thumb}
-            width={180}
-            height={360}
-            className='hover:scale-95 active:scale-95 cursor-pointer'
-          />
-        </>
+        <Image
+          src={product.assetPath + product.thumb}
+          width={180}
+          height={320}
+          className='hover:scale-95 active:scale-95 cursor-pointer'
+        />
       </Link>
       <div className='flex justify-between items-center h-12 p-2'>
         <Link href={`/tienda/producto/${product.slug}`}>
-          <a className='w-1/2 text-xl font-semibold uppercase overflow-hidden overflow-ellipsis whitespace-nowrap hover:text-violet-500 active:text-violet-500'>
+          <a className='w-1/2 text-lg xl:text-xl font-semibold uppercase overflow-hidden overflow-ellipsis whitespace-nowrap hover:text-violet-500 active:text-violet-500'>
             {product.name}
           </a>
         </Link>
-        <p className='text-xl font-light'>
+        <p className='text-lg xl:text-xl font-light'>
           $ {priceToString(product.price)}MXN
         </p>
       </div>
