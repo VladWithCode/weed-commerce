@@ -4,7 +4,7 @@ import Button from '../globals/Button';
 
 function GoToCheckout({ count, subtotal }) {
   return (
-    <div className='p-4 h-40 lg:h-60 flex flex-col text-xl border-2 border-indigo-500 border-opacity-25 rounded bg-zinc-800'>
+    <div className='p-4 h-40 lg:h-60 flex flex-col text-xl border-2 border-indigo-500 border-opacity-25 rounded bg-slate-800'>
       <div className='flex justify-between mb-2'>
         <div className='font-bold'>
           <div>Subtotal:</div>
