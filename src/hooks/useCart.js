@@ -5,7 +5,7 @@ export const CART_INITIAL_STATE = {
   items: [],
   count: 0,
   subtotal: 0,
-  shipping: 150,
+  shipping: 15000,
   total: 0,
 };
 
@@ -94,6 +94,9 @@ export const useCart = create(
             total: subtotal + state.shipping,
           };
         }),
+
+      clearCart: () =>
+        set(() => ({ items: [], subtotal: 0, total: 0, count: 0 })),
     }),
     { name: 'cart-storage' }
   )
