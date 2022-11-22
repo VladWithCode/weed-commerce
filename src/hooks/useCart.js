@@ -60,6 +60,7 @@ export const useCart = create(
             if (stateItem.id === id) return false;
             else {
               subtotal += stateItem.price * stateItem.qty;
+              return true;
             }
           });
 
