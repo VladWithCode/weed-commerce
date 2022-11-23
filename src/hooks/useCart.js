@@ -1,7 +1,7 @@
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
 
-export const CART_INITIAL_STATE = {
+const CART_INITIAL_STATE = {
   items: [],
   count: 0,
   subtotal: 0,

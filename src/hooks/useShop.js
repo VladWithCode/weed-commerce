@@ -1,7 +1,7 @@
 import create from 'zustand';
 import produce from 'immer';
 
-export const SHOP_INITIAL_STATE = {
+const SHOP_INITIAL_STATE = {
   categories: [],
   // prices: [],
 };
