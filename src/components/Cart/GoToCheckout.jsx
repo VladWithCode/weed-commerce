@@ -1,6 +1,6 @@
+import Link from 'next/link';
 import React from 'react';
 import { priceToString } from '../../utils/numberToString';
-import Button from '../globals/Button';
 
 function GoToCheckout({ count, subtotal }) {
   return (
@@ -12,9 +12,11 @@ function GoToCheckout({ count, subtotal }) {
         </div>
         <div className='font-light'>${priceToString(subtotal)}</div>
       </div>
-      <Button className='mt-auto mb-4 ml-auto text-lg w-full'>
-        Proceder al Pago
-      </Button>
+      <Link href='/carrito/pago'>
+        <a className='rounded-sm bg-secondary btn p-2 hover:bg-opacity-100 hover:text-white mt-auto text-lg w-full text-center'>
+          Proceder al Pago
+        </a>
+      </Link>
     </div>
   );
 }
