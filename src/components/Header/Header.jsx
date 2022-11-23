@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Toggler from './Toggler';
 import Controls from './Controls';
 import Menu from './Menu';
 import SearchModal from './SearchModal';
-import { useInView } from 'react-intersection-observer';
 
 function Header() {
   const [isMenuActive, setMenuIsActive] = useState(false);
