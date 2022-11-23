@@ -112,7 +112,14 @@ export const createSale = async (req, res) => {
 
       return res.status(response.status).json({
         result: 'OK',
-        sale: savedSale.toJSON(),
+        sale: {
+          id: savedSale._id,
+          name: savedSale.userData.fullname,
+          items: savedSale.items,
+          subtotal: savedSale.subtotal,
+          shipping: savedSale.shipping,
+          total: savedSale.total,
+        },
       });
     })
     .catch(err => requestErrorHandler(err, { req, res }));
