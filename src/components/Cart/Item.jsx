@@ -4,7 +4,7 @@ import Card from '../../components/globals/Card';
 import { useCart } from '../../hooks/useCart';
 import { priceToString } from '../../utils/numberToString';
 
-function Item({ id, setQty }) {
+function Item({ id }) {
   const items = useCart(state => state.items);
 
   const item = items.find(it => it.id === id);
