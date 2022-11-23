@@ -50,7 +50,8 @@ const SaleSchema = new Schema(
     transferData: {
       type: new Schema(
         {
-          transferNumbers: { type: [String] },
+          amount: { type: Number },
+          reference: { type: Number },
         },
         { _id: false }
       ),
