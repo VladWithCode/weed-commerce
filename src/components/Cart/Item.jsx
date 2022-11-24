@@ -13,22 +13,30 @@ function Item({ id }) {
 
   return (
     <Card
-      className='flex-row basis-40 border-indigo-500 border-b-2 border-opacity-10'
+      className='grid grid-cols-3 grid-rows-2 lg:flex lg:flex-row border-gray-800 border-b-2'
       replaceBaseClass={true}>
-      <Image
-        width={160}
-        height={160}
-        objectFit='cover'
-        src={item.assetPath + item.thumb}
-      />
-      <div className='grow-2 mt-4 ml-4 h-32 flex flex-col'>
-        <p className='text-2xl overflow-hidden text-ellipsis'>{item.name}</p>
+      <div className='col-start-1 col-span-1 row-span-full self-center'>
+        <Image
+          width={160}
+          height={160}
+          objectFit='cover'
+          src={item.assetPath + item.thumb}
+        />
       </div>
-      <div className='grow-1 my-auto mt-2 ml-auto px-4'>
-        <span className='text-gray-500 font-semibold pr-2'>
-          {item.qty}&times;
-        </span>
-        <span className='text-xl'>${priceToString(item.price)}</span>
+      <div className='col-start-2 col-span-2 row-span-2 grow py-4 ml-4 h-full space-y-4'>
+        <p className='text-xl overflow-hidden text-ellipsis'>{item.name}</p>
+        <p>
+          <span className='text-gray-500 font-semibold pr-2'>
+            {item.qty}&times;
+          </span>
+          <span className='text-lg'>${priceToString(item.price)}</span>
+        </p>
+        <p>
+          <span className='text-gray-500 font-semibold pr-2'>Total</span>
+          <span className='text-lg'>
+            ${priceToString(item.qty * item.price)}
+          </span>
+        </p>
       </div>
     </Card>
   );
