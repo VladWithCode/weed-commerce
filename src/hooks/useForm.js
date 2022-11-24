@@ -14,7 +14,7 @@ const reducer = (state, action) => {
   return handlers[type]();
 };
 
-const useForm = ({ initFields = {} }) => {
+const useForm = (initFields = {}) => {
   const [state, dispatch] = useReducer(reducer, { fields: initFields });
 
   const setField = (field, value) =>
