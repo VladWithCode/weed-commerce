@@ -1,30 +1,34 @@
 import React from 'react';
-import useForm from '../../hooks/useForm';
-import Button from '../globals/Button';
+import { usePaymentForm } from '../../hooks/usePaymentForm';
 import Input from './Input';
+import shallow from 'zustand/shallow';
 
-function ShippingForm({ onSubmit, props }) {
-  const [fields, onInputChange] = useForm({
-    street: '',
-    num: '',
-    intNum: '',
-    hood: '',
-    state: '',
-    city: '',
-    zip: '',
-    refs: '',
-  });
+function ShippingForm({ props }) {
+  const { fields, setShippingField, nextStep } = usePaymentForm(
+    state => ({
+      fields: state.shipping,
+      setShippingField: state.setShippingField,
+      nextStep: state.nextStep,
+    }),
+    shallow
+  );
 
-  const _onSubmit = e => {
-    e.preventDefault();
+  const onInputChange = ({ target }) => {
+    const { name, value } = target;
 
-    onSubmit(fields);
+    setShippingField(name, value);
   };
 
   return (
     <>
-      <p className='text-xl'>Direccion de envio</p>
-      <form className='py-6' onSubmit={_onSubmit} {...props}>
+      <p className='text-lg'>Direccion de envio</p>
+      <form
+        className='py-6'
+        onSubmit={e => {
+          e.preventDefault();
+          nextStep();
+        }}
+        {...props}>
         <div className='flex mb-4'>
           <Input
             label='Calle'
@@ -90,11 +94,6 @@ function ShippingForm({ onSubmit, props }) {
             onChange={onInputChange}
             value={fields['refs']}
           />
-        </div>
-        <div className='flex'>
-          <Button type='submit' className='w-full'>
-            Siguiente
-          </Button>
         </div>
       </form>
     </>
