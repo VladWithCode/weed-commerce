@@ -3,7 +3,7 @@ import { usePaymentForm } from '../../hooks/usePaymentForm';
 import Input from './Input';
 import shallow from 'zustand/shallow';
 
-function ShippingForm({ props }) {
+function ShippingForm(props) {
   const { fields, setShippingField, nextStep } = usePaymentForm(
     state => ({
       fields: state.shipping,
