@@ -18,12 +18,15 @@ const useMercadoPago = ({
   amount,
   mpCallbacks,
 }) => {
-  const { data: mp, isError } = useQuery(['use-mercadopago'], setMercadopago, {
+  const {
+    data: mp,
+    isSuccess,
+    isError,
+  } = useQuery(['use-mercadopago'], setMercadopago, {
     refetchOnWindowFocus: false,
   });
-  const [isReady, setIsReady] = useState(false);
   const controllerRef = useRef(null);
-  const containerRef = useRef(document.getElementById(containerId));
+  const containerRef = useRef();
 
   const createBrick = useCallback(async () => {
     const builder = mp.bricks();
@@ -34,13 +37,11 @@ const useMercadoPago = ({
       callbacks: {
         onSubmit: mpCallbacks.onSubmit,
         onReady: () => {
-          setIsReady(true);
           if (typeof mpCallbacks.onReady === 'function')
             return mpCallbacks.onReady();
         },
         onError: err => {
           if (process.env.NODE_ENV === 'development') console.log(err);
-          setIsReady(false);
           if (typeof mpCallbacks.onError === 'function')
             mpCallbacks.onError(err);
         },
@@ -53,22 +54,27 @@ const useMercadoPago = ({
     });
 
     controllerRef.current = controller;
+    containerRef.current = document.getElementById(containerId);
   }, [mp, containerId]);
 
   const clearBrick = useCallback(async () => {
-    if (controllerRef.current) await controllerRef.current.unmount();
+    if (!controllerRef.current || !containerRef.current) return;
+    await controllerRef.current.unmount();
     containerRef.current.innerHTML = '';
     controllerRef.current = null;
-    setIsReady(false);
+
+    console.log('Cleared');
   }, []);
 
-  useEffect(() => {
-    if (mp && !isError && !controllerRef.current) {
+  /* useEffect(() => {
+    if (mp && !isError && !controllerRef?.current) {
       createBrick();
     }
-  }, [mp, isError, createBrick, clearBrick]);
 
-  return { mp, isError, isReady };
+    return clearBrick;
+  }, [mp, isError, createBrick, clearBrick]); */
+
+  return { mp, isError, isReady: isSuccess, clearBrick, createBrick };
 };
 
 export default useMercadoPago;
