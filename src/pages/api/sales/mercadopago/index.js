@@ -1,6 +1,10 @@
+import { createSale } from '../../../../services/MercadoPagoService';
 import { requestErrorHandler } from '../../../../utils/backend/requestErrorHandler';
+import connectMongo from '../../../../utils/db';
 
-const handlers = {};
+const handlers = {
+  POST: createSale,
+};
 
 export default async function index(req, res) {
   const methodHandler = handlers[req.method];
