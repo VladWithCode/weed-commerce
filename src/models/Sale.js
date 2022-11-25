@@ -1,8 +1,9 @@
 import { Schema, model, Types, models } from 'mongoose';
+import { nanoid } from 'nanoid';
 
 const SaleSchema = new Schema(
   {
-    id: { type: String, default: () => nanoid(8) },
+    _id: { type: String, default: () => nanoid(8) },
     user: { type: Types.ObjectId, ref: 'User' },
     userData: {
       type: new Schema({
