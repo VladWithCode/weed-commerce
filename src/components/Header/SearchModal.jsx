@@ -3,6 +3,10 @@ import getClassname from '../../utils/getClassname';
 import Search from '../Search/Search';
 
 function SearchModal({ isActive, setIsActive }) {
+  const onSubmit = e => {
+    setIsActive(false);
+  };
+
   return (
     <div
       className={getClassname(
@@ -22,7 +26,7 @@ function SearchModal({ isActive, setIsActive }) {
         </button>
       </div>
       <div className='m-auto mt-0 flex h-11 w-full justify-center items-center rounded max-w-4xl overflow-hidden z-10'>
-        <Search />
+        <Search onSubmit={onSubmit} />
       </div>
     </div>
   );
