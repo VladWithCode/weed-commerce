@@ -2,9 +2,8 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import PageHeader from '../../components/globals/PageHeader';
 
-const index = () => {
+const Index = () => {
   const { search } = useRouter().query;
-  
 
   return (
     <>
@@ -18,4 +17,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

@@ -1,1 +1,3 @@
-export default (...classes) => classes.filter(Boolean).join(' ');
+const getClassname = (...classes) => classes.filter(Boolean).join(' ');
+
+export default getClassname;

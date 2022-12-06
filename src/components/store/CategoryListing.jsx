@@ -21,7 +21,7 @@ function CategoryListing({ categories }) {
     } else {
       setActiveCategories(categories);
     }
-  }, [categoryFilters]);
+  }, [categoryFilters, categories]);
 
   return (
     <div id='products' className='col-start-3 col-span-6'>

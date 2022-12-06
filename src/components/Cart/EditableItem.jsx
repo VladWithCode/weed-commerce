@@ -6,16 +6,11 @@ import { priceToString } from '../../utils/numberToString';
 import QtySelector from './QtySelector';
 import shallow from 'zustand/shallow';
 
-function Item({ id, setQty }) {
-  const items = useCart(state => state.items);
+function Item({ item, setQty }) {
   const { removeItem, setItemQty } = useCart(
     state => ({ removeItem: state.removeItem, setItemQty: state.setItemQty }),
     shallow
   );
-
-  const item = items.find(it => it.id === id);
-
-  if (!item) return <></>;
 
   return (
     <Card
@@ -27,6 +22,7 @@ function Item({ id, setQty }) {
           height={160}
           objectFit='cover'
           src={item.assetPath + item.thumb}
+          alt={item.name}
         />
       </div>
       <div className='col-start-3 col-span-2 grow-2 mt-4 ml-4 h-full'>

@@ -9,7 +9,7 @@ import SelectMethod from '../../components/Checkout/SelectMethod';
 import Script from 'next/script';
 import CustomerInfo from '../../components/Checkout/CustomerInfo';
 
-function pago() {
+function Pago() {
   const step = usePaymentForm(state => state.step);
   const { nextStep, prevStep } = usePaymentForm(
     state => ({ nextStep: state.nextStep, prevStep: state.prevStep }),
@@ -43,4 +43,4 @@ function pago() {
   );
 }
 
-export default pago;
+export default Pago;

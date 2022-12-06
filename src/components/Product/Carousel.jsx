@@ -36,6 +36,7 @@ function Carousel({ assetPath, images }) {
           <ThumbBtn
             img={img}
             i={i}
+            key={i}
             currentIndex={state.currentIndex}
             assetPath={state.assetPath}
             dispatch={dispatch}

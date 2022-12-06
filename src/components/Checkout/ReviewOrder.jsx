@@ -14,7 +14,7 @@ function ReviewOrder() {
       <p className='text-lg'>Revisar Pedido</p>
       <div className='flex flex-col gap-y-2'>
         {cart.items.map(item => (
-          <Item id={item.id} />
+          <Item id={item.id} key={item.id} />
         ))}
       </div>
       <div className='flex flex-wrap'>

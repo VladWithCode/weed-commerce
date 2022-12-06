@@ -30,6 +30,7 @@ function ProductCard({ product, className }) {
           width={180}
           height={320}
           className='hover:scale-95 active:scale-95 cursor-pointer'
+          alt={product.name}
         />
       </Link>
       <div className='flex justify-between items-center h-12 p-2'>

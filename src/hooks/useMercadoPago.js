@@ -55,7 +55,7 @@ const useMercadoPago = ({
 
     controllerRef.current = controller;
     containerRef.current = document.getElementById(containerId);
-  }, [mp, containerId]);
+  }, [mp, containerId, amount, mpCallbacks]);
 
   const clearBrick = useCallback(async () => {
     if (!controllerRef.current || !containerRef.current) return;

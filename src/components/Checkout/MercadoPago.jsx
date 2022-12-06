@@ -76,7 +76,7 @@ function MercadoPago({}) {
 
       return () => clearBrick();
     }
-  }, [isReady]);
+  }, [isReady, clearBrick, createBrick]);
 
   return (
     <div className='p-2'>

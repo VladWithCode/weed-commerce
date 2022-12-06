@@ -1,16 +1,9 @@
 import Image from 'next/image';
 import React from 'react';
 import Card from '../../components/globals/Card';
-import { useCart } from '../../hooks/useCart';
 import { priceToString } from '../../utils/numberToString';
 
-function Item({ id }) {
-  const items = useCart(state => state.items);
-
-  const item = items.find(it => it.id === id);
-
-  if (!item) return <></>;
-
+function Item({ item }) {
   return (
     <Card
       className='grid grid-cols-3 grid-rows-2 lg:flex lg:flex-row border-gray-800 border-b-2'
@@ -21,6 +14,7 @@ function Item({ id }) {
           height={160}
           objectFit='cover'
           src={item.assetPath + item.thumb}
+          alt={item.name}
         />
       </div>
       <div className='col-start-2 col-span-2 row-span-2 grow py-4 ml-4 h-full space-y-4'>

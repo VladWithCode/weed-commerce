@@ -44,7 +44,7 @@ function Tienda() {
           })),
         },
       ]);
-  }, [isLoading, isError]);
+  }, [isLoading, isError, data.categories, initFilters]);
 
   if (isLoading || !data) return <Loading />;
 
